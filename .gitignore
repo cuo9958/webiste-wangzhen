@@ -1,8 +1,0 @@
-﻿################################################################################
-# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
-################################################################################
-
-/.vs/webiste-wangzhen/v14
-/assets/global/plugins/font-awesome/fonts
-/.vs/config/applicationhost.config
-/assets/global/plugins/simple-line-icons/fonts
