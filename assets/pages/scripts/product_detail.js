@@ -128,6 +128,7 @@ $(function () {
     });
 
     if (params.id) { setModel(params.id); }
+    if (params.cid) { setModel(params.cid); }
     if (jQuery().datepicker) {
         $('.date-picker').datepicker({
             rtl: App.isRTL(),
@@ -138,6 +139,7 @@ $(function () {
     }
     $("#btn_save").click(function () {
         var data = {
+            id:params.id||0,
             title: $("#title").val(),
             type: $("#type").val(),
             code: $("#code").val(),
