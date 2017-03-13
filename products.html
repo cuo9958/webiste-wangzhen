@@ -291,7 +291,7 @@
                                     <table class="table table-hover table-bordered table-striped" id="product_list">
                                         <thead>
                                             <tr>
-                                                <th> <input type="checkbox" class="ck_all" /></th>
+                                                <th> <label class="mt-checkbox"><input type="checkbox" class="ck_all" /><span></span></label></th>
                                                 <th class="text-center"> 序号 </th>
                                                 <th> 产品编号 </th>
                                                 <th> 产品名称 </th>
@@ -340,7 +340,8 @@
         <script id="tmp-list" type="text/html">
             {{each data as vv}}
             <tr>
-                <td> <input type="checkbox" data-id="{{vv.id}}" class="ck_item" /></td>
+                <td>
+                <label class="mt-checkbox"><input type="checkbox" data-id="{{vv.id}}" class="ck_item" /><span></span></label> </td>
                 <td class="text-center"> {{vv.id}} </td>
                 <td> {{vv.code}} </td>
                 <td> {{vv.title}} </td>
