@@ -87,4 +87,16 @@ var interfaces = {
             fn(data);
         }, 1000);
     },
+    //获取运价
+    getPrice: function (id, fn) {
+        var result = [];
+        for (var i = 0; i < 5; i++) {
+            var temp = {
+                id: i + 1,
+
+            }
+            result.push(temp);
+        }
+        fn(result);
+    },
 }
