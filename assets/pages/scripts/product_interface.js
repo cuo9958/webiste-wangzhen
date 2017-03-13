@@ -31,7 +31,7 @@ var interfaces = {
     //保存产品信息
     saveProduct: function (data, fn) {
         console.log(data);
-        fn({ code: 1 });
+        fn({ code: 1,id:1 });
     },
     //获取产品的详情
     getProduct: function (id, fn) {

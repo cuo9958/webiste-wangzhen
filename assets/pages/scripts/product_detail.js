@@ -205,6 +205,9 @@ $(function () {
         interfaces.saveProduct(data, function (res) {
             if (res) {
                 toastr.info("保存成功");
+                setTimeout(function () {
+                    window.location.href = "product_price?id="+res.id;
+                }, 500);
             }
         });
     });
