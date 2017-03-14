@@ -99,4 +99,9 @@ var interfaces = {
         }
         fn(result);
     },
+    //添加运价
+    addPrice: function (d, fn) {
+        d.id = (Math.random() * 999) >> 0;
+        fn(d);
+    },
 }

@@ -36,6 +36,9 @@
         #product_list th, #product_list td {
             text-align: center;
         }
+        #table_template .form-body {
+            padding:0 20px;
+        }
     </style>
 </head>
 <!-- END HEAD -->
@@ -244,7 +247,7 @@
                                                 返回
                                                 <i class="fa fa-copy"></i>
                                             </a>
-                                            <button id="btn_add" class="btn red">
+                                            <button id="btn_sp" class="btn red">
                                                 提交审批
                                                 <i class="fa fa-adjust"></i>
                                             </button>
@@ -262,21 +265,21 @@
                                     <div class="row text-center">
                                         <div class="col-md-12">
                                             <div class="btn-group">
-                                                <button id="btn_see" class="btn green">
+                                                <button id="btn_save" class="btn green">
                                                     保存
-                                                    <i class="fa fa-eye"></i>
+                                                    <i class="fa fa-save"></i>
                                                 </button>
-                                                <button id="btn_edit" class="btn purple">
+                                                <button id="btn_copy" class="btn purple">
                                                     复制
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <a href="products.html" class="btn blue">
-                                                    增加
                                                     <i class="fa fa-copy"></i>
-                                                </a>
-                                                <button id="btn_add_price" class="btn yellow">
+                                                </button>
+                                                <button id="btn_add" class="btn blue">
+                                                    增加
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                                <button id="btn_cancel" class="btn yellow">
                                                     取消
-                                                    <i class="fa fa-adjust"></i>
+                                                    <i class="fa fa-arrow-left"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -284,7 +287,7 @@
                                     </div>
                                 </div>
                                 <div class="dataTables_wrapper no-footer">
-                                    <table class="table table-hover table-bordered table-striped" id="product_list">
+                                    <table class="table table-hover table-bordered table-striped order-column" id="sample_1">
                                         <thead>
                                             <tr>
                                                 <th> <label class="mt-checkbox"><input type="checkbox" class="ck_all" /><span></span></label></th>
@@ -301,7 +304,7 @@
                                                 <th>EI项</th>
                                             </tr>
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody id="tables"></tbody>
                                     </table>
                                     <div class="row">
                                         <div class="col-md-12">
@@ -345,9 +348,100 @@
                 <td> {{vv.end}} </td>
                 <td> {{vv.range}} </td>
                 <td> {{vv.state}} </td>
+                <td> {{vv.state}} </td>
+                <td> {{vv.state}} </td>
                 <td> {{vv.createDate}} </td>
             </tr>
             {{/each}}
+        </script>
+        <script id="tmp-add" type="text/html">
+            <div id="table_template" class="row">
+                <div class="col-md-12 ">
+                    <!-- BEGIN SAMPLE FORM PORTLET-->
+                    <div class="portlet ">
+                        <div class="portlet-body form">
+                            <div role="form">
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label>始发</label>
+                                        <input type="text" class="from form-control" placeholder="...">
+                                        <input type="hidden" class="pid" value="{{id}}">
+                                    </div>
+                                </div>
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label>到达</label>
+                                        <input type="text" class="to form-control" placeholder="...">
+                                    </div>
+                                </div>
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label>OR/RT</label>
+                                        <input type="text" class="form-control" placeholder="...">
+                                    </div>
+                                </div>
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label>舱位</label>
+                                        <input type="text" class="form-control" placeholder="...">
+                                    </div>
+                                </div>
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label>最长停留</label>
+                                        <select class="form-control">
+                                            <option value="0">N/A</option>
+                                            <option value="1">1M</option>
+                                            <option value="2">2M</option>
+                                            <option value="3">3M</option>
+                                            <option value="4">6M</option>
+                                            <option value="5">12M</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label>Fare Class</label>
+                                        <select class="form-control">
+                                            <option value="0">YOW</option>
+                                            <option value="1">YRT1M</option>
+                                            <option value="2">YRT3M</option>
+                                            <option value="3">YRT6M</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label>路径</label>
+                                        <input type="text" class="form-control" placeholder="...">
+                                    </div>
+                                </div>
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label>货币</label>
+                                        <input type="text" class="form-control" placeholder="...">
+                                    </div>
+                                </div>
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label>价格</label>
+                                        <input type="text" class="form-control" placeholder="...">
+                                    </div>
+                                </div>
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label>EI项</label>
+                                        <select class="form-control">
+                                            <option value="0">NON-END/NON-RER/NON-REF</option>
+                                            <option value="1">NON-END/NON-RER/NON-REB</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </script>
         <!-- END FOOTER -->
         <!--[if lt IE 9]>
@@ -371,6 +465,9 @@
         <script src="./assets/layouts/layout2/scripts/layout.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="../assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
         <!--<script src="./assets/pages/scripts/table-datatables-editable.min.js" type="text/javascript"></script>-->
         <!-- END PAGE LEVEL SCRIPTS -->
         <script src="assets/global/plugins/template.js"></script>
