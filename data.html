@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>产品管理</title>
+    <title>数据角色</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="" name="description" />
@@ -19,12 +19,11 @@
     <link href="./assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="./assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
+    <link href="../assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="./assets/global/css/components.css" rel="stylesheet" id="style_components" type="text/css" />
     <link href="./assets/global/css/plugins.css" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
-    <link href="../assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="./assets/layouts/layout2/css/layout.min.css" rel="stylesheet" type="text/css" />
     <link href="./assets/layouts/layout2/css/themes/blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
@@ -32,11 +31,6 @@
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" />
     <link href="./assets/pages/css/index.css" rel="stylesheet" />
-    <style>
-        #product_list th, #product_list td {
-            text-align: center;
-        }
-    </style>
 </head>
 <!-- END HEAD -->
 
@@ -122,7 +116,7 @@
                                 </a>
                             </li>
                             <li class="nav-item  ">
-                                <a href="product_detail.html" class="nav-link ">
+                                <a href="ui_metronic_grid.html" class="nav-link ">
                                     <span class="title">新建产品</span>
                                 </a>
                             </li>
@@ -160,17 +154,18 @@
                         </a>
                         <ul class="sub-menu">
                             <li class="nav-item  ">
-                                <a href="form_controls.html" class="nav-link ">
-                                    <span class="title">
-                                        审批查询
-                                    </span>
+                                <a href="role.html" class="nav-link ">
+                                    <span class="title">角色管理</span>
                                 </a>
                             </li>
                             <li class="nav-item  ">
-                                <a href="form_controls_md.html" class="nav-link ">
-                                    <span class="title">
-                                        已办任务
-                                    </span>
+                                <a href="data.html" class="nav-link ">
+                                    <span class="title">数据角色</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="user.html" class="nav-link ">
+                                    <span class="title">用户管理</span>
                                 </a>
                             </li>
                         </ul>
@@ -189,7 +184,7 @@
                 <div class="page-bar">
                     <ul class="page-breadcrumb">
                         <li>
-                            <i class="icon-home"></i> 查询产品
+                            <i class="icon-home"></i> 数据角色
                         </li>
                     </ul>
                 </div>
@@ -200,59 +195,16 @@
                         <div class="portlet light ">
                             <div class="portlet-title">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <input id="title" type="text" placeholder="产品名称" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input id="start" placeholder="生效日期" class="form-control date-picker" size="16" type="text" />
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            </div>
+                                            <label class="control-label">角色名称</label>
+                                            <input id="search_name" type="text" placeholder="角色名称" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <select id="type" class="form-control">
-                                                <option value="0">公布</option>
-                                                <option value="1">销售</option>
-                                                <option value="2">中转</option>
-                                                <option value="3">其他</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input id="end" placeholder="失效日期" class="form-control date-picker" size="16" type="text" />
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <input id="code" type="text" placeholder="产品编号" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <select id="state" class="form-control">
-                                                <option value="0">未提交</option>
-                                                <option value="1">待审批</option>
-                                                <option value="2">待发布</option>
-                                                <option value="3">已发布</option>
-                                                <option value="4">已失效</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 text-right">
-                                        <div class="btn-group">
-                                            <a href="product_detail.html" class="btn green">
-                                                新建
-                                                <i class="fa fa-plus"></i>
-                                            </a>
-                                            <button id="btn_search" class="btn blue">
-                                                查询
-                                                <i class="fa fa-search"></i>
-                                            </button>
+                                            <label class="control-label">角色描述</label>
+                                            <input id="search_des" type="text" placeholder="角色描述" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -260,56 +212,44 @@
                             <div class="portlet-body">
                                 <div class="table-toolbar">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12 text-center">
                                             <div class="btn-group">
-                                                <button id="btn_see" class="btn green">
-                                                    查看
-                                                    <i class="fa fa-eye"></i>
+                                                <button id="btn_search" class="btn blue">
+                                                    查询
+                                                    <i class="fa fa-search"></i>
                                                 </button>
-                                                <button id="btn_edit" class="btn purple">
-                                                    修改
+                                                <a href="data_detail.html" class="btn green">
+                                                    创建
+                                                    <i class="fa fa-plus"></i>
+                                                </a>
+                                                <button id="btn_edt" class="btn yellow">
+                                                    编辑
                                                     <i class="fa fa-edit"></i>
                                                 </button>
-                                                <button id="btn_copy" class="btn blue">
-                                                    复制
-                                                    <i class="fa fa-copy"></i>
-                                                </button>
-                                                <button id="btn_add_price" class="btn yellow">
-                                                    添加运价
-                                                    <i class="fa fa-adjust"></i>
-                                                </button>
-                                                <button id="btn_updata" class="btn red">
-                                                    提交审批
-                                                    <i class="fa fa-arrow-circle-up"></i>
+                                                <button id="btn_del" class="btn red">
+                                                    删除
+                                                    <i class="fa fa-remove"></i>
                                                 </button>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="dataTables_wrapper no-footer">
-                                    <table class="table table-hover table-bordered table-striped" id="product_list">
+                                    <table id="product_list" class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th> <label class="mt-checkbox"><input type="checkbox" class="ck_all" /><span></span></label></th>
-                                                <th class="text-center"> 序号 </th>
-                                                <th> 产品编号 </th>
-                                                <th> 产品名称 </th>
-                                                <th> 产品类型 </th>
-                                                <th> 生效日期 </th>
-                                                <th> 失效日期 </th>
-                                                <th> 销售范围 </th>
-                                                <th> 状态 </th>
-                                                <th> 创建时间 </th>
+                                                <th class="col-md-1"> <label class="mt-checkbox"><input type="checkbox" data-id="{{vv.id}}" class="ck_all" /><span></span></label> </th>
+                                                <th class="col-md-1">  序号 </th>
+                                                <th> 角色名称 </th>
+                                                <th> 角色描述 </th>
                                             </tr>
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody id="list"></tbody>
                                     </table>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div id="test" class="dataTables_paginate paging_bootstrap_number text-right">
-                                                <ul id="pagation" class="pagination" style="visibility: visible;">
-                                                </ul>
+                                                <ul id="pagation" class="pagination" style="visibility: visible;"></ul>
                                             </div>
                                         </div>
                                     </div>
@@ -333,24 +273,19 @@
                 </div>
             </div>
         </div>
+        <!-- END FOOTER -->
         <script id="tmp-list" type="text/html">
             {{each data as vv}}
             <tr>
                 <td>
-                <label class="mt-checkbox"><input type="checkbox" data-id="{{vv.id}}" class="ck_item" /><span></span></label> </td>
+                    <label class="mt-checkbox"><input type="checkbox" data-id="{{vv.id}}" class="ck_item" /><span></span></label>
+                </td>
                 <td class="text-center"> {{vv.id}} </td>
-                <td> {{vv.code}} </td>
-                <td> {{vv.title}} </td>
-                <td> {{vv.type}} </td>
-                <td> {{vv.start}} </td>
-                <td> {{vv.end}} </td>
-                <td> {{vv.range}} </td>
-                <td> {{vv.state}} </td>
-                <td> {{vv.createDate}} </td>
+                <td>{{vv.title}}</td>
+                <td>{{vv.des}}</td>
             </tr>
             {{/each}}
         </script>
-        <!-- END FOOTER -->
         <!--[if lt IE 9]>
         <script src="./assets/global/plugins/respond.min.js"></script>
         <script src="./assets/global/plugins/excanvas.min.js"></script>
@@ -363,21 +298,23 @@
         <script src="./assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
         <script src="./assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
-        <script src="../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="./assets/global/scripts/datatable.js" type="text/javascript"></script>
+        <script src="./assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+        <script src="./assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
         <script src="../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="./assets/global/scripts/app.min.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="./assets/layouts/layout2/scripts/layout.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <!--<script src="./assets/pages/scripts/table-datatables-editable.min.js" type="text/javascript"></script>-->
-        <!-- END PAGE LEVEL SCRIPTS -->
         <script src="./assets/global/plugins/template.js"></script>
         <script src="./assets/global/plugins/bootstrap-paginator.min.js"></script>
-        <script src="./assets/pages/scripts/product_interface.js"></script>
-        <script src="./assets/pages/scripts/products.js"></script>
+        <script src="./assets/pages/scripts/system_interface.js"></script>
+        <script src="./assets/pages/scripts/data.js"></script>
 </body>
 
 </html>
