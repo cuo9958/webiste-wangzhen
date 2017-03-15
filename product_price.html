@@ -139,17 +139,17 @@
                         </a>
                         <ul class="sub-menu">
                             <li class="nav-item  ">
-                                <a href="components_date_time_pickers.html" class="nav-link ">
+                                <a href="role.html" class="nav-link ">
                                     <span class="title">角色管理</span>
                                 </a>
                             </li>
                             <li class="nav-item  ">
-                                <a href="components_color_pickers.html" class="nav-link ">
+                                <a href="data.html" class="nav-link ">
                                     <span class="title">数据角色</span>
                                 </a>
                             </li>
                             <li class="nav-item  ">
-                                <a href="components_select2.html" class="nav-link ">
+                                <a href="user.html" class="nav-link ">
                                     <span class="title">用户管理</span>
                                 </a>
                             </li>
@@ -324,6 +324,7 @@
             </div>
             <!-- END CONTENT -->
         </div>
+        
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
@@ -335,22 +336,22 @@
             </div>
         </div>
         <script id="tmp-list" type="text/html">
-            {{each data as vv}}
+            {{each data as vv index}}
             <tr>
                 <td>
-                    <label class="mt-checkbox"><input type="checkbox" data-id="{{vv.id}}" class="ck_item" /><span></span></label>
+                    <label class="mt-checkbox"><input type="checkbox" data-id="{{index}}" class="ck_item" /><span></span></label>
                 </td>
                 <td class="text-center"> {{vv.id}} </td>
-                <td> {{vv.code}} </td>
-                <td> {{vv.title}} </td>
-                <td> {{vv.type}} </td>
-                <td> {{vv.start}} </td>
-                <td> {{vv.end}} </td>
-                <td> {{vv.range}} </td>
-                <td> {{vv.state}} </td>
-                <td> {{vv.state}} </td>
-                <td> {{vv.state}} </td>
-                <td> {{vv.createDate}} </td>
+                <td> {{vv.from}} </td>
+                <td> {{vv.to}} </td>
+                <td> {{vv.or}} </td>
+                <td> {{vv.cang}} </td>
+                <td> {{vv.stay}} </td>
+                <td> {{vv.fare}} </td>
+                <td> {{vv.path}} </td>
+                <td> {{vv.currency}} </td>
+                <td> {{vv.price}} </td>
+                <td> {{vv.ei}} </td>
             </tr>
             {{/each}}
         </script>
@@ -364,77 +365,85 @@
                                 <div class="form-body">
                                     <div class="form-group">
                                         <label>始发</label>
-                                        <input type="text" class="from form-control" placeholder="...">
+                                        <input type="text" value="{{from}}" class="from form-control" placeholder="...">
                                         <input type="hidden" class="pid" value="{{id}}">
                                     </div>
                                 </div>
                                 <div class="form-body">
                                     <div class="form-group">
                                         <label>到达</label>
-                                        <input type="text" class="to form-control" placeholder="...">
+                                        <input type="text" value="{{to}}" class="to form-control" placeholder="...">
                                     </div>
                                 </div>
                                 <div class="form-body">
                                     <div class="form-group">
                                         <label>OR/RT</label>
-                                        <input type="text" class="form-control" placeholder="...">
+                                        <input type="text" value="{{or}}" class="or form-control" placeholder="...">
                                     </div>
                                 </div>
                                 <div class="form-body">
                                     <div class="form-group">
                                         <label>舱位</label>
-                                        <input type="text" class="form-control" placeholder="...">
+                                        <input type="text" value="{{cang}}" class="cang form-control" placeholder="...">
                                     </div>
                                 </div>
                                 <div class="form-body">
                                     <div class="form-group">
                                         <label>最长停留</label>
-                                        <select class="form-control">
-                                            <option value="0">N/A</option>
-                                            <option value="1">1M</option>
-                                            <option value="2">2M</option>
-                                            <option value="3">3M</option>
-                                            <option value="4">6M</option>
-                                            <option value="5">12M</option>
+                                        <select class="stay form-control">
+                                            <option value="N/A" {{if stay=='N/A'}}checked{{/if}}>N/A</option>
+                                            <option value="1M" {{if stay=='1M'}}checked{{/if}}>1M</option>
+                                            <option value="2M" {{if stay=='2M'}}checked{{/if}}>2M</option>
+                                            <option value="3M" {{if stay=='3M'}}checked{{/if}}>3M</option>
+                                            <option value="6M" {{if stay=='6M'}}checked{{/if}}>6M</option>
+                                            <option value="12M" {{if stay=='12M'}}checked{{/if}}>12M</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-body">
                                     <div class="form-group">
                                         <label>Fare Class</label>
-                                        <select class="form-control">
-                                            <option value="0">YOW</option>
-                                            <option value="1">YRT1M</option>
-                                            <option value="2">YRT3M</option>
-                                            <option value="3">YRT6M</option>
+                                        <select class="fare form-control">
+                                            <option value="YOW" {{if fare=='YOW'}}checked{{/if}}>YOW</option>
+                                            <option value="YRT1M" {{if fare=='YRT1M'}}checked{{/if}}>YRT1M</option>
+                                            <option value="YRT3M" {{if fare=='YRT3M'}}checked{{/if}}>YRT3M</option>
+                                            <option value="YRT6M" {{if fare=='YRT6M'}}checked{{/if}}>YRT6M</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-body">
                                     <div class="form-group">
                                         <label>路径</label>
-                                        <input type="text" class="form-control" placeholder="...">
+                                        <input type="text" value="{{path}}" class="path form-control" placeholder="...">
                                     </div>
                                 </div>
                                 <div class="form-body">
                                     <div class="form-group">
                                         <label>货币</label>
-                                        <input type="text" class="form-control" placeholder="...">
+                                        <input type="text" value="{{currency}}" class="currency form-control" placeholder="...">
                                     </div>
                                 </div>
                                 <div class="form-body">
                                     <div class="form-group">
                                         <label>价格</label>
-                                        <input type="text" class="form-control" placeholder="...">
+                                        <input type="text" value="{{price}}" class="price form-control" placeholder="...">
                                     </div>
                                 </div>
                                 <div class="form-body">
                                     <div class="form-group">
                                         <label>EI项</label>
-                                        <select class="form-control">
-                                            <option value="0">NON-END/NON-RER/NON-REF</option>
-                                            <option value="1">NON-END/NON-RER/NON-REB</option>
+                                        <select class="ei form-control">
+                                            <option {{if ei=='NON-END/NON-RER/NON-REF'}}checked{{/if}} value="NON-END/NON-RER/NON-REF">NON-END/NON-RER/NON-REF</option>
+                                            <option {{if ei=='NON-END/NON-RER/NON-REB'}}checked{{/if}} value="NON-END/NON-RER/NON-REB">NON-END/NON-RER/NON-REB</option>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <button id="modal-save" type="button" class="btn green">提交</button>
+                                            <button id="modal-cancel" type="button" class="btn default">取消</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

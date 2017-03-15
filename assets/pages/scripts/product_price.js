@@ -34,6 +34,14 @@ $(function () {
             id: $("#table_template .pid").val(),
             from: $("#table_template .from").val(),
             to: $("#table_template .to").val(),
+            or: $("#table_template .or").val(),
+            cang: $("#table_template .cang").val(),
+            stay: $("#table_template .stay").val(),
+            fare: $("#table_template .fare").val(),
+            path: $("#table_template .path").val(),
+            currency: $("#table_template .currency").val(),
+            price: $("#table_template .price").val(),
+            ei: $("#table_template .ei").val(),
         }
         console.log(data);
         modifyList.push(data);
@@ -47,21 +55,23 @@ $(function () {
             toastr.info("保存成功");
         });
     });
+    $("body").on("click", "#modal-save", function () {
+        save();
+        bootbox.hideAll();
+    }).on("click", "#modal-cancel", function () {
+        bootbox.hideAll();
+    });
     //复制
     $("#btn_copy").click(function () {
         var item = $("#tables .ck_item:checked").eq(0);
         if (!item||item.length==0) return;
         var id = item.data("id");
-        if (!id) return;
         id = parseInt(id);
-        var data={};
-        for (var i = 0; i < priceList.length; i++) {
-            var temp = priceList[i];
-            if (temp.id = id) data = temp;
-        }
-        console.log(temp);
+        if (isNaN(id)) return;
+        var data = priceList[id];
+        console.log(data);
         bootbox.dialog({
-            message: template("tmp-add", {}),
+            message: template("tmp-add", data),
             title: "编辑",
             callback:save,
             buttons: {
@@ -81,22 +91,15 @@ $(function () {
         bootbox.dialog({
             message: template("tmp-add", {}),
             title: "编辑",
-            callback: save,
-            buttons: {
-                success: {
-                    label: "添加",
-                    className: "green",
-                    
-                },
-                cancel: {
-                    label: "取消",
-                    className: "base",
-                }
-            }
         });
     });
     //取消
     $("#btn_cancel").click(function () {
-
+        interfaces.getPrice(param.id, function (res) {
+            if (res) {
+                priceList = res;
+                $("#tables").html(template("tmp-list", { data: res }));
+            }
+        });
     });
 });
