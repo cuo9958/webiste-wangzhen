@@ -1,6 +1,6 @@
-var TableDatatablesEditable = function () {
+var TableDatatablesEditable = function() {
 
-    var handleTable = function () {
+    var handleTable = function() {
 
         function restoreRow(oTable, nRow) {
             var aData = oTable.fnGetData(nRow);
@@ -20,8 +20,8 @@ var TableDatatablesEditable = function () {
             jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
             jqTds[2].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[2] + '">';
             jqTds[3].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[3] + '">';
-            jqTds[4].innerHTML = '<a class="edit" href="">Save</a>';
-            jqTds[5].innerHTML = '<a class="cancel" href="">Cancel</a>';
+            jqTds[4].innerHTML = '<a class="edit" href="">保存</a>';
+            jqTds[5].innerHTML = '<a class="cancel" href="">取消</a>';
         }
 
         function saveRow(oTable, nRow) {
@@ -30,8 +30,8 @@ var TableDatatablesEditable = function () {
             oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
             oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
             oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 4, false);
-            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 5, false);
+            oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 4, false);
+            oTable.fnUpdate('<a class="delete" href="">删除</a>', nRow, 5, false);
             oTable.fnDraw();
         }
 
@@ -41,14 +41,13 @@ var TableDatatablesEditable = function () {
             oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
             oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
             oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 4, false);
+            oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 4, false);
             oTable.fnDraw();
         }
 
         var table = $('#sample_editable_1');
 
         var oTable = table.dataTable({
-
             // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
             // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js). 
             // So when dropdowns used the scrollable div should be removed. 
@@ -68,7 +67,13 @@ var TableDatatablesEditable = function () {
             "pageLength": 5,
 
             "language": {
-                "lengthMenu": " _MENU_ records"
+                "emptyTable": "没有记录",
+                "info": "当前第 1 页 共 _MAX_ 条记录",
+                "infoEmpty": "没有记录",
+                "infoFiltered": "(当前第 1 页 共 _MAX_ 条记录)",
+                "lengthMenu": "每页显示 _MENU_ 记录",
+                "search": "查找: ",
+                "zeroRecords": "没有记录",
             },
             "columnDefs": [{ // set default column settings
                 'orderable': true,
@@ -78,8 +83,8 @@ var TableDatatablesEditable = function () {
                 "targets": [0]
             }],
             "order": [
-                [0, "asc"]
-            ] // set first column as a default sort by asc
+                    [0, "asc"]
+                ] // set first column as a default sort by asc
         });
 
         var tableWrapper = $("#sample_editable_1_wrapper");
@@ -87,9 +92,8 @@ var TableDatatablesEditable = function () {
         var nEditing = null;
         var nNew = false;
 
-        $('#sample_editable_1_new').click(function (e) {
+        $('#sample_editable_1_new').click(function(e) {
             e.preventDefault();
-
             if (nNew && nEditing) {
                 if (confirm("Previose row not saved. Do you want to save it ?")) {
                     saveRow(oTable, nEditing); // save
@@ -101,7 +105,6 @@ var TableDatatablesEditable = function () {
                     oTable.fnDeleteRow(nEditing); // cancel
                     nEditing = null;
                     nNew = false;
-                    
                     return;
                 }
             }
@@ -113,7 +116,7 @@ var TableDatatablesEditable = function () {
             nNew = true;
         });
 
-        table.on('click', '.delete', function (e) {
+        table.on('click', '.delete', function(e) {
             e.preventDefault();
 
             if (confirm("Are you sure to delete this row ?") == false) {
@@ -125,7 +128,7 @@ var TableDatatablesEditable = function () {
             alert("Deleted! Do not forget to do some ajax to sync with backend :)");
         });
 
-        table.on('click', '.cancel', function (e) {
+        table.on('click', '.cancel', function(e) {
             e.preventDefault();
             if (nNew) {
                 oTable.fnDeleteRow(nEditing);
@@ -137,10 +140,10 @@ var TableDatatablesEditable = function () {
             }
         });
 
-        table.on('click', '.edit', function (e) {
+        table.on('click', '.edit', function(e) {
             e.preventDefault();
             nNew = false;
-            
+
             /* Get the row as a parent of the link that was clicked on */
             var nRow = $(this).parents('tr')[0];
 
@@ -149,9 +152,10 @@ var TableDatatablesEditable = function () {
                 restoreRow(oTable, nEditing);
                 editRow(oTable, nRow);
                 nEditing = nRow;
-            } else if (nEditing == nRow && this.innerHTML == "Save") {
+            } else if (nEditing == nRow && this.innerHTML == "保存") {
                 /* Editing this row and want to save it */
                 saveRow(oTable, nEditing);
+                console.log(nEditing)
                 nEditing = null;
                 alert("Updated! Do not forget to do some ajax to sync with backend :)");
             } else {
@@ -165,7 +169,7 @@ var TableDatatablesEditable = function () {
     return {
 
         //main function to initiate the module
-        init: function () {
+        init: function() {
             handleTable();
         }
 
