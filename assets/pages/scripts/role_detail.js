@@ -3,95 +3,83 @@
 
 var role1 = [], role2 = [];
 
-function getRole(obj, list) {
-    if (!obj) return;
-    var temp = [];
-    for (var i = 0; i < obj.length; i++) {
-        var item = obj[i];
-        var isParent = false;
-        for (var j = 0; j < list.length; j++) {
-            if (item.id == list[j]) isParent = true;
-        }
-        if (isParent) {
-            temp.push(item);
-        } else {
-            var search = getRole(item.children, list);
-            if (search && search.length > 0) {
-                temp.push({
-                    id: item.id,
-                    text: item.text,
-                    children: search
-                });
-            }
-        }
-    }
-    return temp;
+function beforeClick(treeId, treeNode) {
+    var zTree = $.fn.zTree.getZTreeObj("tree1");
+    zTree.checkNode(treeNode, !treeNode.checked, null, true);
+    return false;
 }
-
-function setRole() { }
-function bindRole(role,nodes) {
-    for (var i = 0; i < role.length; i++) {
-        var item = role[i];
-        var isAt=false;
-        for (var j = 0; j < nodes.length; j++) {
-            var tt = nodes[j];
-            if (tt.id == item.id) {
-                setRole();
-            } else {
-
-            }
-        }
-    }
-
-    console.log(role2);
+function beforeClick2(treeId, treeNode) {
+    var zTree = $.fn.zTree.getZTreeObj("tree2");
+    zTree.checkNode(treeNode, !treeNode.checked, null, true);
+    return false;
 }
-
-function initTree1() {
-    $("#tree1").jstree({
-        'plugins': ["wholerow", "checkbox", "types"],
-        "types": {
-            "default": {
-                "icon": "fa fa-bookmark icon-state-warning icon-lg"
-            },
+function initzTree1() {
+    var setting = {
+        view: {
+            showIcon: false,
         },
-        'core': {
-            "themes": {
-                "responsive": false
-            },
-            data: role1
-        }
-    });
-}
-
-function initTree2() {
-    $("#tree2").jstree({
-        'plugins': ["wholerow", "checkbox", "types"],
-        "types": {
-            "default": {
-                "icon": "fa fa-bookmark icon-state-warning icon-lg"
-            },
+        check: {
+            enable: true,
         },
-        'core': {
-            "themes": {
-                "responsive": false
-            },
-            data: role2
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            beforeClick: beforeClick,
         }
-    });
+    };
+
+    $.fn.zTree.init($("#tree1"), setting, role1);
+}
+function initzTree2() {
+    var setting = {
+        view: {
+            showIcon: false
+        },
+        check: {
+            enable: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            beforeClick: beforeClick2,
+        }
+    };
+
+    $.fn.zTree.init($("#tree2"), setting, role2);
 }
 $(function () {
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "positionClass": "toast-top-center",
+        "onclick": null,
+        "showDuration": "1000",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
     var params = utils.getRequest();
+    interfaces.getJurisdiction(params.id, function (res) {
+        if (res) {
+            role1 = res;
+            initzTree1();
+        }
+    });
     if (params.id) {
-        interfaces.getJurisdiction(params.id, function (res) {
-            if (res) {
-                role1 = res;
-                initTree1();
-            }
-        });
         interfaces.getRoleJurisdiction(params.id, function (res) {
             if (res) {
                 role2 = res;
-                initTree2();
+                initzTree2();
             }
         });
         interfaces.getRole(params.id, function (res) {
@@ -118,22 +106,21 @@ $(function () {
         }
     });
     $("#btn_add").click(function () {
-        var list = $("#tree1").jstree("get_selected");
-        if (list.length == 0) {
-            toastr.info("请选择一个权限");
-        } else {
-            var nodes = getRole(role1, list);
-            bindRole(role2, nodes);
-            //initTree2();
-        }
+        var treeObj = $.fn.zTree.getZTreeObj("tree1");
+        var nodes = treeObj.getCheckedNodes(true);
+        console.log(nodes)
+        toastr.info("操作成功");
+        setTimeout(function () {
+            window.location.reload();
+        }, 500);
     });
     $("#btn_cancel").click(function () {
-        var list = $("#tree2").jstree("get_selected");
-        if (list.length == 0) {
-            toastr.info("请选择一个权限");
-        } else {
-            var nodes = getRole(role2, list);
-            console.log(list)
-        }
+        var treeObj = $.fn.zTree.getZTreeObj("tree2");
+        var nodes = treeObj.getCheckedNodes(true);
+        console.log(nodes)
+        toastr.info("操作成功");
+        setTimeout(function () {
+            window.location.reload();
+        }, 500);
     });
 });
