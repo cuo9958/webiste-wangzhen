@@ -20,8 +20,19 @@ var TableDatatablesEditable = function() {
             jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[1] + '">';
             jqTds[2].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[2] + '">';
             jqTds[3].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[3] + '">';
-            jqTds[4].innerHTML = '<a class="edit" href="">保存</a>';
-            jqTds[5].innerHTML = '<a class="cancel" href="">取消</a>';
+            jqTds[4].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[4] + '">';
+            jqTds[5].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[5] + '">';
+            jqTds[6].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[6] + '">';
+            jqTds[7].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[7] + '">';
+            jqTds[8].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[8] + '">';
+            jqTds[9].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[9] + '">';
+            jqTds[10].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[10] + '">';
+            jqTds[11].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[11] + '">';
+            jqTds[12].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[12] + '">';
+            jqTds[13].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[13] + '">';
+            jqTds[14].innerHTML = '<a class="edit" href="">保存</a>';
+            jqTds[15].innerHTML = '<a class="cancel" href="">取消</a>';
+            jqTds[16].innerHTML = '<a class="copy" href="">复制</a>';
         }
 
         function saveRow(oTable, nRow) {
@@ -30,8 +41,19 @@ var TableDatatablesEditable = function() {
             oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
             oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
             oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-            oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 4, false);
-            oTable.fnUpdate('<a class="delete" href="">删除</a>', nRow, 5, false);
+            oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
+            oTable.fnUpdate(jqInputs[5].value, nRow, 5, false);
+            oTable.fnUpdate(jqInputs[6].value, nRow, 6, false);
+            oTable.fnUpdate(jqInputs[7].value, nRow, 7, false);
+            oTable.fnUpdate(jqInputs[8].value, nRow, 8, false);
+            oTable.fnUpdate(jqInputs[9].value, nRow, 9, false);
+            oTable.fnUpdate(jqInputs[10].value, nRow, 10, false);
+            oTable.fnUpdate(jqInputs[11].value, nRow, 11, false);
+            oTable.fnUpdate(jqInputs[12].value, nRow, 12, false);
+            oTable.fnUpdate(jqInputs[13].value, nRow, 13, false);
+            oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 14, false);
+            oTable.fnUpdate('<a class="delete" href="">删除</a>', nRow, 15, false);
+            oTable.fnUpdate('<a class="copy" href="">复制</a>', nRow, 15, false);
             oTable.fnDraw();
         }
 
@@ -41,7 +63,17 @@ var TableDatatablesEditable = function() {
             oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
             oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
             oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-            oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 4, false);
+            oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
+            oTable.fnUpdate(jqInputs[5].value, nRow, 5, false);
+            oTable.fnUpdate(jqInputs[6].value, nRow, 6, false);
+            oTable.fnUpdate(jqInputs[7].value, nRow, 7, false);
+            oTable.fnUpdate(jqInputs[8].value, nRow, 8, false);
+            oTable.fnUpdate(jqInputs[9].value, nRow, 9, false);
+            oTable.fnUpdate(jqInputs[10].value, nRow, 10, false);
+            oTable.fnUpdate(jqInputs[11].value, nRow, 11, false);
+            oTable.fnUpdate(jqInputs[12].value, nRow, 12, false);
+            oTable.fnUpdate(jqInputs[13].value, nRow, 13, false);
+            oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 14, false);
             oTable.fnDraw();
         }
 
@@ -109,7 +141,7 @@ var TableDatatablesEditable = function() {
                 }
             }
 
-            var aiNew = oTable.fnAddData(['', '', '', '', '', '']);
+            var aiNew = oTable.fnAddData(['', '', '', '', '', '', '', '', '', '', '', '', '', '']);
             var nRow = oTable.fnGetNodes(aiNew[0]);
             editRow(oTable, nRow);
             nEditing = nRow;
@@ -140,6 +172,13 @@ var TableDatatablesEditable = function() {
             }
         });
 
+        table.on('click', '.copy', function(e) {
+            e.preventDefault();
+
+            var nRow = $(this).parents('tr')[0];
+            console.log(nRow)
+        });
+
         table.on('click', '.edit', function(e) {
             e.preventDefault();
             nNew = false;
@@ -167,14 +206,11 @@ var TableDatatablesEditable = function() {
     }
 
     return {
-
         //main function to initiate the module
         init: function() {
             handleTable();
         }
-
     };
-
 }();
 
 jQuery(document).ready(function() {
