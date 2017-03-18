@@ -131,4 +131,11 @@ $(function () {
             window.location.reload();
         }, 500);
     });
+    
+    $("#btn_save_back").click(function () {
+        toastr.success("保存成功");
+        setTimeout(function () {
+            window.location.href = "role.html";
+        }, 500);
+    });
 });

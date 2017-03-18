@@ -37,5 +37,8 @@ $(function () {
     }
     $("#btn_save").click(function () {
         toastr.info("保存成功");
+        setTimeout(function () {
+            window.location.href = "user.html";
+        }, 500);
     });
 });
