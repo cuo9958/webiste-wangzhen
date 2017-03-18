@@ -8,11 +8,11 @@ var search_data = {
 function setData() {
     search_data.currPage = 1;
     search_data.title = $("#title").val();
-    search_data.type = $("#type option:selected").text();
+    search_data.type = $("#type").val();
     search_data.code = $("#code").val();
     search_data.start = $("#start").val();
     search_data.end = $("#end").val();
-    search_data.state = $("#state option:selected").text();
+    search_data.state = $("#state").val();
     search_data.pageCount = parseInt($("#table_length select").val());
     search();
 }
@@ -40,7 +40,6 @@ $(function () {
     if (jQuery().datepicker) {
         $('.date-picker').datepicker({
             rtl: App.isRTL(),
-            orientation: "left",
             autoclose: true,
             zIndexOffset: 9999,
             orientation:"bottom"

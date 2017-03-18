@@ -216,9 +216,9 @@
                                         <div class="form-group">
                                             <label class="control-label">角色</label>
                                             <select id="search_role" class="form-control">
-                                                <option value="0">全部</option>
-                                                <option value="1">航线管理员</option>
-                                                <option value="2">收益部经理</option>
+                                                <option value="">全部</option>
+                                                <option value="航线管理员">航线管理员</option>
+                                                <option value="收益部经理">收益部经理</option>
                                             </select>
                                         </div>
                                     </div>
@@ -226,8 +226,9 @@
                                         <div class="form-group">
                                             <label class="control-label">状态</label>
                                             <select id="search_state" class="form-control">
-                                                <option value="0">启用</option>
-                                                <option value="1">停用</option>
+                                                <option value="">全部</option>
+                                                <option value="启用">启用</option>
+                                                <option value="停用">停用</option>
                                             </select>
                                         </div>
                                     </div>
@@ -324,12 +325,12 @@
                 <td class="text-center"> {{vv.id}} </td>
                 <td> <a href="user_detail.html?id={{vv.id}}">{{vv.user}} </a></td>
                 <td> {{vv.name}} </td>
-                <td> {{vv.role |setRole}} </td>
+                <td> {{vv.role}} </td>
                 <td> {{vv.data}} </td>
                 <td> {{vv.trx}}名称 </td>
                 <td> {{vv.tell}} </td>
                 <td> {{vv.phone}} </td>
-                <td> {{vv.state |setState}} </td>
+                <td> {{vv.state}} </td>
             </tr>
             {{/each}}
         </script>

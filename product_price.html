@@ -286,6 +286,10 @@
                                                     增加
                                                     <i class="fa fa-plus"></i>
                                                 </button>
+                                                <button id="btn_row" class="btn green">
+                                                    编辑
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
                                                 <button id="btn_cancel" class="btn yellow">
                                                     取消
                                                     <i class="fa fa-arrow-left"></i>
@@ -486,7 +490,7 @@
         <script id="tmp-row" type="text/html">
             <tr id="new_row">
                 <td></td>
-                <td></td>
+                <td><input type="hidden" class="rowid" value="{{id}}" /></td>
                 <td><input value="{{from}}" type="text" class="from form-control" /></td>
                 <td><input value="{{to}}" type="text" class="to form-control" /></td>
                 <td><input value="{{or}}" type="text" class="or form-control" /></td>

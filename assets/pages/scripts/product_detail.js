@@ -42,8 +42,9 @@ function setModel(id) {
             $('.date-picker').datepicker({
                 rtl: App.isRTL(),
                 format: "yyyy-m-d",
-                orientation: "left",
-                autoclose: true
+                orientation: "auto",
+                autoclose: true,
+                zIndexOffset: 9999,
             });
             $("#fenxi").val(res.fenxi);
             $("#tiaozheng").val(res.tiaozheng);
@@ -76,8 +77,9 @@ $(function () {
         $('.date-picker').datepicker({
             rtl: App.isRTL(),
             format: "yyyy-m-d",
-            orientation: "left",
-            autoclose: true
+            orientation: "auto",
+            autoclose: true,
+            zIndexOffset: 9999,
         });
     });
     $("#begin").on("click", ".btn_del", function () {
@@ -85,6 +87,12 @@ $(function () {
     });
     $("#except .mt-repeater-add").click(function () {
         $("#except .group").append(template("tmp-except", {}));
+        $('.date-picker').datepicker({
+            rtl: App.isRTL(),
+            format: "yyyy-m-d",
+            orientation: "auto",
+            autoclose: true, zIndexOffset: 9999,
+        });
     });
     $("#except").on("click", ".btn_del", function () {
         $(this).parent().parent().remove();
@@ -179,7 +187,7 @@ $(function () {
             if (res) {
                 toastr.info("保存成功");
                 setTimeout(function () {
-                    window.location.href = "product_price?id="+res.id;
+                    window.location.href = "product_price.html?id="+res.id;
                 }, 500);
             }
         });

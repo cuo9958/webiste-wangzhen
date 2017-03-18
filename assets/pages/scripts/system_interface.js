@@ -1,20 +1,46 @@
 ﻿//接口层
+var roles = [
+    { id: 1, title: "流程测试", des: "流程测试" },
+    { id: 2, title: "国际业务", des: "国际业务" },
+    { id: 3, title: "营销委", des: "营销委" },
+    { id: 4, title: "收益部经理", des: "收益部经理" },
+    { id: 5, title: "航线管理区经理", des: "航线管理区经理" },
+    { id: 6, title: "运价管理组", des: "运价管理组" },
+    { id: 7, title: "航线管理员", des: "航线管理员" },
+    { id: 8, title: "营业部", des: "营业部" },
+    { id: 9, title: "系统管理员", des: "系统管理员" },
+];
+var datas = [
+    { id: 1, title: "国际业务", gang: "国际业务", des: "" },
+    { id: 2, title: "大阪支店业务员", gang: "营业部业务员", des: "" },
+    { id: 3, title: "台北营业部业务员", gang: "营业部业务员", des: "" },
+    { id: 4, title: "南昌营业部", gang: "营业部业务员", des: "" },
+    { id: 5, title: "全国营业部", gang: "营业部业务员", des: "" },
+    { id: 6, title: "电子商务销售服务中心", gang: "营业部业务员", des: "" },
+    { id: 7, title: "系统管理员", gang: "系统管理员", des: "系统管理员" },
+    { id: 8, title: "呼和浩特营业部业务员", gang: "营业部业务员", des: "呼和浩特营业部业务员" },
+    { id: 9, title: "郑州营业部业务员", gang: "营业部业务员", des: "郑州营业部业务员" },
+];
+var users = [
+    { id: 1, user: "liuwh", name: "张三", role: "收益部经理", data: "国际业务", trx: "liuwh", tell: "", phone: "", state: "启用" },
+    { id: 2, user: "ngt", name: "王四", role: "系统管理员", data: "系统管理员", trx: "ngt", tell: "", phone: "", state: "启用" },
+    { id: 3, user: "liwei2", name: "赵四", role: "航线管理员", data: "航线管理员", trx: "liwei2", tell: "", phone: "", state: "启用" },
+    { id: 4, user: "liushy", name: "李二", role: "航线管理员", data: "航线管理员", trx: "liushy", tell: "", phone: "", state: "启用" },
+    { id: 5, user: "lius3", name: "刘一", role: "航线管理员", data: "航线管理员", trx: "lius3", tell: "", phone: "", state: "停用" },
+    { id: 6, user: "zhangn", name: "周五", role: "营业部", data: "长春营业部人员", trx: "zhangn", tell: "", phone: "", state: "启用" },
+    { id: 7, user: "lishengzhang", name: "郑六", role: "营业部", data: "贵阳营业部人员", trx: "lishengzhang", tell: "", phone: "", state: "启用" },
+    { id: 8, user: "zhujx2", name: "王十", role: "营业部", data: "温州营业部人员", trx: "zhujx2", tell: "", phone: "", state: "启用" },
+];
 var interfaces = {
     //搜索角色
     searchRole: function (data, fn) {
         console.log(data);
-        var res = [];
-        if (!data.pageCount || data.pageCount == -1) data.pageCount = 20;
-        for (var i = 0; i < data.pageCount; i++) {
-            var temp = {
-                id: i + 1,
-                title: data.title || "角色名称" + i,
-                gang:"营业部",
-                des: data.des || "角色描述" + Math.random() * 100
-            }
-            res.push(temp);
-        }
-        fn({ data: res, total: 20 });
+        fn({ data: roles, total: 1 });
+    },
+    //搜索数据
+    searchData: function (data, fn) {
+        console.log(data);
+        fn({ data: datas, total: 1 });
     },
     //删除角色
     delRole: function (id, fn) {
@@ -22,12 +48,10 @@ var interfaces = {
     },
     //获取角色
     getRole: function (id, fn) {
-        var data = {
-            id: id,
-            title: "我是角色",
-            des: "角色的备注"
-        }
-        fn(data);
+        id = parseInt(id);
+        if (isNaN(id)) id = 1;
+        id--;
+        fn(roles[id]);
     },
     //获取未分配权限
     getJurisdiction: function (d, fn) {
@@ -61,12 +85,10 @@ var interfaces = {
     },
     //获取数据角色
     getData: function (id, fn) {
-        var data = {
-            id: id,
-            title: "我是角色",
-            des: "角色的备注"
-        }
-        fn(data);
+        id = parseInt(id);
+        if (isNaN(id)) id = 1;
+        id--;
+        fn(datas[id]);
     },
     //获取未分配权限
     getDataJurisdictionAll: function (d, fn) {
@@ -90,26 +112,30 @@ var interfaces = {
     searchUser: function (data, fn) {
         console.log(data);
         var res = [];
-        if (!data.pageCount||data.pageCount==-1) data.pageCount = 20;
-        for (var i = 0; i < data.pageCount; i++) {
-            var temp = {
-                id: i + 1,
-                user: data.user || "登录名" + i,
-                name: data.des || "名字" + Math.random() * 100,
-                role: "角色",
-                data: "数据角色",
-                rtx: "aaa",
-                tell: "010-12345657",
-                phone: "15600255684",
-                state: data.state || 0
+        for (var i = 0; i < users.length; i++) {
+            var tt = users[i];
+            if (data.id) {
+                if (data.id != tt.id) continue;
             }
-            res.push(temp);
+            if (data.name) {
+                if (tt.name.indexOf(data.name) < 0) continue;
+            }
+            if (data.user) {
+                if (tt.user.indexOf(data.user) < 0) continue;
+            }
+            if (data.role) {
+                if (data.role != tt.role) continue;
+            }
+            if (data.state) {
+                if (data.state != tt.state) continue;
+            }
+            if(tt)res.push(tt);
         }
-        fn({ data: res, total: 20 });
+        fn({ data: res, total: 1 });
     },
     //设置状态
     setUserState: function (d, fn) {
-        fn({code:1});
+        fn({ code: 1 });
     },
     //删除用户
     delUser: function (d, fn) {
@@ -117,17 +143,6 @@ var interfaces = {
     },
     //获取用户信息
     getUser: function (d, fn) {
-        var data = {
-            id: d,
-            name: "姓名",
-            role: "1",
-            data: "数据角色",
-            email: "sss@ss.com",
-            tell: "010-1234567",
-            phone: "15600266487",
-            user: "admin",
-            rtx:"默认"
-        }
-        fn(data);
+        fn(users[1]);
     },
 }

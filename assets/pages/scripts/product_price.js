@@ -58,7 +58,7 @@ $(function () {
     });
     function save() {
         var data = {
-            id: "<span class='color-red'>新增</span>",
+            id: $("#new_row .rowid").val() || "<span class='color-red'>新增</span>",
             from: $("#new_row .from").val(),
             to: $("#new_row .to").val(),
             or: $("#new_row .or").val(),
@@ -115,5 +115,20 @@ $(function () {
         var data = priceList[id];
         if (data) data.del = 1;
         clearHtml();
+    });
+    //编辑
+    $("#btn_row").click(function () {
+        var item = $("#tables .ck_item:checked").eq(0);
+        if (!item || item.length == 0) {
+            toastr.error("请选择一个运价");
+            return;
+        }
+        var id = item.data("id");
+        id = parseInt(id);
+        if (isNaN(id)) return;
+        var data = priceList[id];
+        clearHtml();
+        $("#tables").append(template("tmp-row", data));
+        priceList.splice(id, 1);
     });
 });

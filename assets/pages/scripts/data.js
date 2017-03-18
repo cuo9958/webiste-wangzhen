@@ -12,7 +12,7 @@ function setData() {
 
 function search(page) {
     if (page) search_data.currPage = page;
-    interfaces.searchRole(search_data, function (res) {
+    interfaces.searchData(search_data, function (res) {
         if (res) {
             clearHtml(template("tmp-list", res));
             $("#test").bootstrapPaginator({

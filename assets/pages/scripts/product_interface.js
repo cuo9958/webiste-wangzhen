@@ -19,7 +19,7 @@ var products = [
     { id: 17, code: "SC17S27", title: "暑运山航全国经山东中转至曼谷运价2017.0711-2017.0826、1001-1007", type: "中转", start: "2017/7/11", end: "2017/10/28", range: "全球GDS", state: "已发布", createDate: "2017/1/17" },
     { id: 18, code: "TAO1737", title: "青岛-大阪预售D 舱20170227-20171231", type: "促销", start: "2017/2/7", end: "2017/12/31", range: "全球GDS", state: "已发布", createDate: "2017/1/17" },
     { id: 19, code: "TEL17121", title: "青岛-大阪预售D 舱20170227-20171231", type: "促销", start: "2017/2/7", end: "2017/12/31", range: "直销", state: "已发布", createDate: "2017/1/17" },
-    { id: 20, code: "SC17S25", title: "山航全国经山东中转至首尔运价07月11日-08月26日,10月01日-10月07日", type: "中转", start: "2017/7/11", end: "2017/10/7", range: "中国大陆", state: "已发布", createDate: "2017/1/17" },
+    { id: 20, code: "SC17S25", title: "山航全国经山东中转至首尔运价07月11日-08月26日,10月01日-10月07日", type: "中转", start: "2017/7/11", end: "2017/10/7", range: "中国大陆", state: "已发布", createDate: "2017/1/17" }
 ];
 var prices = [
     { id: 1, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "B", stay: "N/A", or: "1", fare: "BOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
@@ -52,7 +52,7 @@ var interfaces = {
     querylist: function (data, fn) {
         var res = {
             data: [],
-            total: 1
+            total: 4
         }
         console.log(data);
         for (var i = 0; i < products.length; i++) {
@@ -80,7 +80,7 @@ var interfaces = {
         console.log(res);
         if (data.pageCount != -1 && res.data.length > data.pageCount) {
             res.total = res.data.length / data.pageCount;
-            if (res.total % data.pageCount > 0) {
+            if (res.data.length % data.pageCount > 0) {
                 res.total++;
             }
             for (var i = 0; i < data.pageCount; i++) {
@@ -132,8 +132,8 @@ var interfaces = {
                     loc2: "bbb"
                 },
                 {
-                    country1: "0",
-                    country2: "1",
+                    country1: "1",
+                    country2: "0",
                     loc1: "ss",
                     loc2: "dd"
                 }
