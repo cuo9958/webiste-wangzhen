@@ -40,6 +40,9 @@
         #table_template .form-body {
             padding: 0 20px;
         }
+        .color-red {
+            color:#bb0000;
+        }
     </style>
 </head>
 <!-- END HEAD -->
@@ -346,7 +349,7 @@
                 <td>
                     <label class="mt-checkbox"><input type="checkbox" data-id="{{index}}" class="ck_item" /><span></span></label>
                 </td>
-                <td class="text-center"><del>{{vv.id}}</del> </td>
+                <td class="text-center"><del>{{#vv.id}}</del> </td>
                 <td> <del>{{vv.from}}</del> </td>
                 <td> <del>{{vv.to}}</del> </td>
                 <td> <del>{{vv.or}}</del> </td>
@@ -363,7 +366,7 @@
                 <td>
                     <label class="mt-checkbox"><input type="checkbox" data-id="{{index}}" class="ck_item" /><span></span></label>
                 </td>
-                <td class="text-center"> {{vv.id}}</td>
+                <td class="text-center"> {{#vv.id}}</td>
                 <td> {{vv.from}} </td>
                 <td> {{vv.to}} </td>
                 <td> {{vv.or}} </td>

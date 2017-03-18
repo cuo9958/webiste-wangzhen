@@ -58,7 +58,7 @@ $(function () {
     });
     function save() {
         var data = {
-            id: (Math.random()*999)>>0,
+            id: "<span class='color-red'>新增</span>",
             from: $("#new_row .from").val(),
             to: $("#new_row .to").val(),
             or: $("#new_row .or").val(),
