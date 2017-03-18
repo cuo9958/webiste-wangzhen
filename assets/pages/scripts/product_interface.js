@@ -108,8 +108,8 @@ var interfaces = {
     //获取产品的详情
     getProduct: function (id, fn) {
         var data = {
-            title: "测试标题",
-            code: "code123",
+            title: "曼谷昆明航线销售运价",
+            code: "BKK1703",
             end: "2017-3-30",
             except: [
                 {
@@ -121,9 +121,9 @@ var interfaces = {
                     date_start: "2017-3-23"
                 }
             ],
-            fenxi: "<p>测试</p>",
+            fenxi: "首尔-济南旅客以济南组织的团队和首尔回程散客为主。我公司在韩国竞争力不如大韩航空，主要是依靠济南出港的回程旅客为主要客源支撑。",
             isCheck: true,
-            jingzheng: '<p><span style="color: rgb(51, 51, 51); font-family: &#39;Open Sans&#39;, sans-serif; font-size: 14px; line-height: 20px; text-align: right;  background-color: rgb(255, 255, 255);">竞争</span></p>',
+            jingzheng: '山航在首尔-济南航线上主要竞争者是大韩航空。韩国出发的韩国旅客绝大多数会选择大韩航空，进行访问、商务和旅行。大韩航空的旅客相对高端。大韩航空的夏秋促销运价为25万韩币，比我公司的V舱促销高4万韩币。由于旅客构成不同和旅客偏好不同，大韩航空的价格对我公司渠道影响较小。',
             od: [
                 {
                     country1: "1",
@@ -140,7 +140,7 @@ var interfaces = {
             ],
             range: "2",
             start: "2017-3-8",
-            tiaozheng: '<p><span style="color: rgb(51, 51, 51); font-family: &#39;Open Sans&#39;, sans-serif; font-size: 14px; line-height: 20px; text-align: right;  background-color: rgb(255, 255, 255);">计划</span></p>',
+            tiaozheng: '换季产品',
             travel: [
                 {
                     date_end: "2017-3-25",
@@ -152,8 +152,8 @@ var interfaces = {
                 }
             ],
             type: "1",
-            xiaoshou: "",
-            yuqi: ""
+            xiaoshou: "21万、18万的散客促销价格是我公司夏秋一直沿用的价格。",
+            yuqi: "本份产品预计可以保持首尔-济南的旅客流量稳定。"
         }
         setTimeout(function () {
             fn(data);

@@ -42,7 +42,8 @@ $(function () {
             rtl: App.isRTL(),
             orientation: "left",
             autoclose: true,
-            zIndexOffset: 9999
+            zIndexOffset: 9999,
+            orientation:"bottom"
         });
     }
     $("#table_length select").change(function () {
