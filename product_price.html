@@ -36,8 +36,9 @@
         #product_list th, #product_list td {
             text-align: center;
         }
+
         #table_template .form-body {
-            padding:0 20px;
+            padding: 0 20px;
         }
     </style>
 </head>
@@ -238,7 +239,7 @@
                                 </div>
                                 <div class="row text-right">
                                     <div class="col-md-12">
-                                        <div class="btn-group">
+                                        <div class="btn-group fileupload-buttonbar">
                                             <button id="btn_edit" class="btn purple">
                                                 修改产品信息
                                                 <i class="fa fa-edit"></i>
@@ -286,8 +287,8 @@
 
                                     </div>
                                 </div>
-                                <div class="dataTables_wrapper no-footer">
-                                    <table class="table table-hover table-bordered table-striped order-column" id="sample_1">
+                                <div class="table-scrollable">
+                                    <table class="table table-hover table-bordered table-striped order-column" id="product_list">
                                         <thead>
                                             <tr>
                                                 <th> <label class="mt-checkbox"><input type="checkbox" class="ck_all" /><span></span></label></th>
@@ -304,13 +305,16 @@
                                                 <th>EI项</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="tables"></tbody>
+                                        <tbody id="tables">
+                                            <tr>
+                                                <td colspan="12"><div>暂无记录</div></td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div id="test" class="dataTables_paginate paging_bootstrap_number text-right">
-                                                <ul id="pagation" class="pagination" style="visibility: visible;">
-                                                </ul>
+                                                <ul id="pagation" class="pagination" style="visibility: visible;"></ul>
                                             </div>
                                         </div>
                                     </div>
@@ -324,7 +328,7 @@
             </div>
             <!-- END CONTENT -->
         </div>
-        
+
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
@@ -337,11 +341,29 @@
         </div>
         <script id="tmp-list" type="text/html">
             {{each data as vv index}}
+            {{if vv.del==1}}
             <tr>
                 <td>
                     <label class="mt-checkbox"><input type="checkbox" data-id="{{index}}" class="ck_item" /><span></span></label>
                 </td>
-                <td class="text-center"> {{vv.id}} </td>
+                <td class="text-center"><del>{{vv.id}}</del> </td>
+                <td> <del>{{vv.from}}</del> </td>
+                <td> <del>{{vv.to}}</del> </td>
+                <td> <del>{{vv.or}}</del> </td>
+                <td> <del>{{vv.cang}}</del> </td>
+                <td> <del>{{vv.stay}}</del> </td>
+                <td> <del>{{vv.fare}}</del> </td>
+                <td> <del>{{vv.path}}</del> </td>
+                <td> <del>{{vv.currency}}</del> </td>
+                <td> <del>{{vv.price}}</del> </td>
+                <td> <del>{{vv.ei}}</del> </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td>
+                    <label class="mt-checkbox"><input type="checkbox" data-id="{{index}}" class="ck_item" /><span></span></label>
+                </td>
+                <td class="text-center"> {{vv.id}}</td>
                 <td> {{vv.from}} </td>
                 <td> {{vv.to}} </td>
                 <td> {{vv.or}} </td>
@@ -353,6 +375,7 @@
                 <td> {{vv.price}} </td>
                 <td> {{vv.ei}} </td>
             </tr>
+            {{/if}}
             {{/each}}
         </script>
         <script id="tmp-add" type="text/html">
@@ -391,12 +414,12 @@
                                     <div class="form-group">
                                         <label>最长停留</label>
                                         <select class="stay form-control">
-                                            <option value="N/A" {{if stay=='N/A'}}checked{{/if}}>N/A</option>
-                                            <option value="1M" {{if stay=='1M'}}checked{{/if}}>1M</option>
-                                            <option value="2M" {{if stay=='2M'}}checked{{/if}}>2M</option>
-                                            <option value="3M" {{if stay=='3M'}}checked{{/if}}>3M</option>
-                                            <option value="6M" {{if stay=='6M'}}checked{{/if}}>6M</option>
-                                            <option value="12M" {{if stay=='12M'}}checked{{/if}}>12M</option>
+                                            <option value="N/A" {{if stay=='N/A'}} checked{{/if}}>N/A</option>
+                                            <option value="1M" {{if stay=='1M'}} checked{{/if}}>1M</option>
+                                            <option value="2M" {{if stay=='2M'}} checked{{/if}}>2M</option>
+                                            <option value="3M" {{if stay=='3M'}} checked{{/if}}>3M</option>
+                                            <option value="6M" {{if stay=='6M'}} checked{{/if}}>6M</option>
+                                            <option value="12M" {{if stay=='12M'}} checked{{/if}}>12M</option>
                                         </select>
                                     </div>
                                 </div>
@@ -404,10 +427,10 @@
                                     <div class="form-group">
                                         <label>Fare Class</label>
                                         <select class="fare form-control">
-                                            <option value="YOW" {{if fare=='YOW'}}checked{{/if}}>YOW</option>
-                                            <option value="YRT1M" {{if fare=='YRT1M'}}checked{{/if}}>YRT1M</option>
-                                            <option value="YRT3M" {{if fare=='YRT3M'}}checked{{/if}}>YRT3M</option>
-                                            <option value="YRT6M" {{if fare=='YRT6M'}}checked{{/if}}>YRT6M</option>
+                                            <option value="YOW" {{if fare=='YOW'}} checked{{/if}}>YOW</option>
+                                            <option value="YRT1M" {{if fare=='YRT1M'}} checked{{/if}}>YRT1M</option>
+                                            <option value="YRT3M" {{if fare=='YRT3M'}} checked{{/if}}>YRT3M</option>
+                                            <option value="YRT6M" {{if fare=='YRT6M'}} checked{{/if}}>YRT6M</option>
                                         </select>
                                     </div>
                                 </div>
@@ -433,8 +456,8 @@
                                     <div class="form-group">
                                         <label>EI项</label>
                                         <select class="ei form-control">
-                                            <option {{if ei=='NON-END/NON-RER/NON-REF'}}checked{{/if}} value="NON-END/NON-RER/NON-REF">NON-END/NON-RER/NON-REF</option>
-                                            <option {{if ei=='NON-END/NON-RER/NON-REB'}}checked{{/if}} value="NON-END/NON-RER/NON-REB">NON-END/NON-RER/NON-REB</option>
+                                            <option {{if ei=='NON-END/NON-RER/NON-REF'}} checked{{/if}} value="NON-END/NON-RER/NON-REF">NON-END/NON-RER/NON-REF</option>
+                                            <option {{if ei=='NON-END/NON-RER/NON-REB'}} checked{{/if}} value="NON-END/NON-RER/NON-REB">NON-END/NON-RER/NON-REB</option>
                                         </select>
                                     </div>
                                 </div>
@@ -451,6 +474,43 @@
                     </div>
                 </div>
             </div>
+        </script>
+        <script id="tmp-row" type="text/html">
+            <tr id="new_row">
+                <td></td>
+                <td></td>
+                <td><input value="{{from}}" type="text" class="from form-control" /></td>
+                <td><input value="{{to}}" type="text" class="to form-control" /></td>
+                <td><input value="{{or}}" type="text" class="or form-control" /></td>
+                <td><input value="{{cang}}" type="text" class="cang form-control" /></td>
+                <td>
+                    <select class="stay form-control">
+                        <option value="N/A" {{if stay=='N/A'}} checked{{/if}}>N/A</option>
+                        <option value="1M" {{if stay=='1M'}} checked{{/if}}>1M</option>
+                        <option value="2M" {{if stay=='2M'}} checked{{/if}}>2M</option>
+                        <option value="3M" {{if stay=='3M'}} checked{{/if}}>3M</option>
+                        <option value="6M" {{if stay=='6M'}} checked{{/if}}>6M</option>
+                        <option value="12M" {{if stay=='12M'}} checked{{/if}}>12M</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="fare form-control">
+                        <option value="YOW" {{if fare=='YOW'}} checked{{/if}}>YOW</option>
+                        <option value="YRT1M" {{if fare=='YRT1M'}} checked{{/if}}>YRT1M</option>
+                        <option value="YRT3M" {{if fare=='YRT3M'}} checked{{/if}}>YRT3M</option>
+                        <option value="YRT6M" {{if fare=='YRT6M'}} checked{{/if}}>YRT6M</option>
+                    </select>
+                </td>
+                <td><input value="{{path}}" type="text" class="path form-control" /></td>
+                <td><input value="{{currency}}" type="text" class="currency form-control" /></td>
+                <td><input value="{{price}}" type="text" class="price form-control" /></td>
+                <td>
+                    <select class="ei form-control">
+                        <option {{if ei=='NON-END/NON-RER/NON-REF'}} checked{{/if}} value="NON-END/NON-RER/NON-REF">NON-END/NON-RER/NON-REF</option>
+                        <option {{if ei=='NON-END/NON-RER/NON-REB'}} checked{{/if}} value="NON-END/NON-RER/NON-REB">NON-END/NON-RER/NON-REB</option>
+                    </select>
+                </td>
+            </tr>
         </script>
         <!-- END FOOTER -->
         <!--[if lt IE 9]>

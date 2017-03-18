@@ -98,7 +98,6 @@ $(function () {
         }
     });
     if (params.id) {
-        
         interfaces.getDataJurisdiction(params.id, function (res) {
             if (res) {
                 role2 = res;
@@ -111,22 +110,18 @@ $(function () {
                 $("#search_des").val(res.des);
             }
         });
+    } else {
+        initzTree2();
     }
     $("#sel_all").click(function () {
         var fl = this.checked;
-        if (fl) {
-            $("#tree1").jstree("select_all");
-        } else {
-            $("#tree1").jstree("deselect_all");
-        }
+        var treeObj = $.fn.zTree.getZTreeObj("tree1");
+        treeObj.checkAllNodes(fl);
     });
     $("#can_all").click(function () {
         var fl = this.checked;
-        if (fl) {
-            $("#tree2").jstree("select_all");
-        } else {
-            $("#tree2").jstree("deselect_all");
-        }
+        var treeObj = $.fn.zTree.getZTreeObj("tree2");
+        treeObj.checkAllNodes(fl);
     });
     $("#btn_add").click(function () {
         var treeObj = $.fn.zTree.getZTreeObj("tree1");
@@ -157,7 +152,9 @@ $(function () {
         }
     });
     $("#btn_save").click(function () {
-        var treeObj = $.fn.zTree.getZTreeObj("tree2");
-        var nodes = treeObj.getCheckedNodes(true);
+        toastr.success("保存成功");
+        setTimeout(function () {
+            window.location.href = "data.html";
+        }, 500);
     });
 });

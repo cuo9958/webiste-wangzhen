@@ -100,7 +100,7 @@ $(function () {
     $("#btn_add_price").click(function () {
         var id = $(".ck_item:checked").eq(0).data("id");
         if (id) {
-            window.location.href = "product_price.html?id=" + id;
+            window.location.href = "product_price2.html?cid=" + id;
         } else {
             toastr.info("请选择一个产品");
         }

@@ -21,6 +21,32 @@ var products = [
     { id: 19, code: "TEL17121", title: "青岛-大阪预售D 舱20170227-20171231", type: "促销", start: "2017/2/7", end: "2017/12/31", range: "直销", state: "已发布", createDate: "2017/1/17" },
     { id: 20, code: "SC17S25", title: "山航全国经山东中转至首尔运价07月11日-08月26日,10月01日-10月07日", type: "中转", start: "2017/7/11", end: "2017/10/7", range: "中国大陆", state: "已发布", createDate: "2017/1/17" },
 ];
+var prices = [
+    { id: 1, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "B", stay: "N/A", or: "1", fare: "BOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 2, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "C", stay: "N/A", or: "1", fare: "COW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 3, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "D", stay: "N/A", or: "1", fare: "DOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 4, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "E", stay: "N/A", or: "1", fare: "GOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 5, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "G", stay: "12M", or: "1", fare: "HOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 6, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "M", stay: "N/A", or: "1", fare: "KOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 7, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "T", stay: "N/A", or: "1", fare: "LOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 8, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "Y", stay: "N/A", or: "1", fare: "MOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 9, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "U", stay: "N/A", or: "1", fare: "QOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 10, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "R", stay: "N/A", or: "1", fare: "UOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 11, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "E", stay: "N/A", or: "1", fare: "VOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 12, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "H", stay: "1M", or: "1", fare: "YOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 13, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "F", stay: "3M", or: "1", fare: "BRT1Y16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 14, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "V", stay: "3M", or: "1", fare: "CRT1Y16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 15, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "Z", stay: "3M", or: "2", fare: "DRT1Y16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 16, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "E", stay: "1M", or: "2", fare: "GRT3M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 17, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "A", stay: "1M", or: "2", fare: "HRT6M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 18, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "B", stay: "12M", or: "2", fare: "KRT6M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 19, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "T", stay: "6M", or: "2", fare: "LRT3M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 20, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "Y", stay: "3M", or: "2", fare: "MRT1Y16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 21, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "U", stay: "3M", or: "2", fare: "QRT3M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 22, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "I", stay: "6M", or: "2", fare: "URT1M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 23, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "D", stay: "3M", or: "2", fare: "VRT1M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 24, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "B", stay: "1M", or: "2", fare: "YRT1Y16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" }
+];
 var interfaces = {
     //查询产品
     querylist: function (data, fn) {
@@ -136,14 +162,7 @@ var interfaces = {
     //获取运价
     getPrice: function (id, fn) {
         var result = [];
-        for (var i = 0; i < 5; i++) {
-            var temp = {
-                id: i + 1,
-
-            }
-            result.push(temp);
-        }
-        fn(result);
+        fn(prices);
     },
     //添加运价
     addPrice: function (d, fn) {

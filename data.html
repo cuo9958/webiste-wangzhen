@@ -196,14 +196,17 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">角色名称</label>
+                                            <label class="control-label">数据角色名称</label>
                                             <input id="search_name" type="text" placeholder="角色名称" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">角色描述</label>
-                                            <input id="search_des" type="text" placeholder="角色描述" class="form-control">
+                                            <label class="control-label">岗位类型</label>
+                                            <select id="search_des" class="form-control">
+                                                <option value="营业部">营业部</option>
+                                                <option value="售票部">售票部</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -234,12 +237,20 @@
                                     </div>
                                 </div>
                                 <div class="dataTables_wrapper no-footer">
-                                    <table id="product_list" class="table table-hover">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="dataTables_length" id="table_length">
+                                                <label>每页显示 <select name="sample_editable_1_length" aria-controls="sample_editable_1" class="form-control input-sm input-xsmall input-inline"><option value="5">5</option><option value="15">15</option><option value="20">20</option><option value="-1">All</option></select> 记录</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table id="product_list" class="table table-hover hide">
                                         <thead>
                                             <tr>
                                                 <th class="col-md-1"> <label class="mt-checkbox"><input type="checkbox" data-id="{{vv.id}}" class="ck_all" /><span></span></label> </th>
                                                 <th class="col-md-1">  序号 </th>
                                                 <th> 角色名称 </th>
+                                                <td>岗位类型</td>
                                                 <th> 角色描述 </th>
                                             </tr>
                                         </thead>
@@ -281,6 +292,7 @@
                 </td>
                 <td class="text-center"> {{vv.id}} </td>
                 <td>{{vv.title}}</td>
+                <td>{{vv.gang}}</td>
                 <td>{{vv.des}}</td>
             </tr>
             {{/each}}

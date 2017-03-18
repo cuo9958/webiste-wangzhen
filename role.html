@@ -234,7 +234,14 @@
                                     </div>
                                 </div>
                                 <div class="dataTables_wrapper no-footer">
-                                    <table id="product_list" class="table table-hover">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="dataTables_length" id="table_length">
+                                                <label>每页显示 <select name="sample_editable_1_length" aria-controls="sample_editable_1" class="form-control input-sm input-xsmall input-inline"><option value="5">5</option><option value="15">15</option><option value="20">20</option><option value="-1">All</option></select> 记录</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table id="product_list" class="table table-hover hide">
                                         <thead>
                                             <tr>
                                                 <th class="col-md-1"> <label class="mt-checkbox"><input type="checkbox" data-id="{{vv.id}}" class="ck_all" /><span></span></label> </th>

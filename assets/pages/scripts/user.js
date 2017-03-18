@@ -1,7 +1,8 @@
 ﻿/// <reference path="system_interface.js" />
 /// <reference path="../../global/plugins/template.js" />
 var search_data = {
-    currPage: 1
+    currPage: 1,
+    pageCount:5
 };
 
 var role = ["全部", "航线管理员", "收益部经理"];
@@ -18,6 +19,7 @@ function setData() {
     search_data.user = $("#search_user").val();
     search_data.role = $("#search_role").val();
     search_data.state = $("#search_state").val();
+    search_data.pageCount = parseInt($("#table_length select").val());
     search();
 }
 
@@ -37,6 +39,7 @@ function search(page) {
     });
 }
 function clearHtml(html) {
+    $("#product_list").removeClass("hide");
     $("#list").html(html);
 }
 
@@ -55,10 +58,13 @@ $(function () {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
+    $("#table_length select").change(function () {
+        search_data.pageCount = parseInt($("#table_length select").val());
+        search();
+    });
     $("#btn_search").click(function () {
         setData();
     });
-    setData();
     $("#product_list .ck_all").change(function () {
         if (this.checked) {
             $("#product_list .ck_item").each(function () { this.checked = true; });

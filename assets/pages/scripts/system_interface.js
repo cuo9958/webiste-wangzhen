@@ -3,16 +3,18 @@ var interfaces = {
     //搜索角色
     searchRole: function (data, fn) {
         console.log(data);
-        var data = [];
-        for (var i = 0; i < 10; i++) {
+        var res = [];
+        if (!data.pageCount || data.pageCount == -1) data.pageCount = 20;
+        for (var i = 0; i < data.pageCount; i++) {
             var temp = {
                 id: i + 1,
                 title: data.title || "角色名称" + i,
+                gang:"营业部",
                 des: data.des || "角色描述" + Math.random() * 100
             }
-            data.push(temp);
+            res.push(temp);
         }
-        fn({ data: data, total: 20 });
+        fn({ data: res, total: 20 });
     },
     //删除角色
     delRole: function (id, fn) {
@@ -30,10 +32,15 @@ var interfaces = {
     //获取未分配权限
     getJurisdiction: function (d, fn) {
         var data = [
-                    { id: 1, name: "运价管理" },
-                    { id: 2, name: "运价管理", pId: 1 }, { id: 3, name: "运价管理", pId: 1 },
-                    { id: 4, name: "产品管理" },
-                    { id: 5, name: "产品新建", pId: 4 }, { id: 6, name: "产品查询", pId: 4 },
+                    { id: 1, name: "运价查询" },
+                    { id: 2, name: "运价添加" },
+                    { id: 3, name: "运价变价" },
+                    { id: 4, name: "产品查询" },
+                    { id: 5, name: "产品添加" },
+                    { id: 6, name: "产品编辑" },
+                    { id: 7, name: "产品查询运价" },
+                    { id: 8, name: "系统管理" },
+                    { id: 9, name: "审批管理" },
         ];
         fn(data);
     },
@@ -82,8 +89,9 @@ var interfaces = {
     //搜索用户
     searchUser: function (data, fn) {
         console.log(data);
-        var data = [];
-        for (var i = 0; i < 10; i++) {
+        var res = [];
+        if (!data.pageCount||data.pageCount==-1) data.pageCount = 20;
+        for (var i = 0; i < data.pageCount; i++) {
             var temp = {
                 id: i + 1,
                 user: data.user || "登录名" + i,
@@ -95,9 +103,9 @@ var interfaces = {
                 phone: "15600255684",
                 state: data.state || 0
             }
-            data.push(temp);
+            res.push(temp);
         }
-        fn({ data: data, total: 20 });
+        fn({ data: res, total: 20 });
     },
     //设置状态
     setUserState: function (d, fn) {
