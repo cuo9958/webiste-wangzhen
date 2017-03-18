@@ -161,7 +161,7 @@
                                 </a>
                             </li>
                             <li class="nav-item  ">
-                                <a href="form_controls_md.html" class="nav-link ">
+                                <a href="completed.html" class="nav-link ">
                                     <span class="title">
                                         已办任务
                                     </span>
@@ -210,10 +210,10 @@
                                         <div class="form-group">
                                             <label class="control-label">产品类型</label>
                                             <select id="search_type" class="form-control">
-                                                <option value="0">公布</option>
-                                                <option value="1">销售</option>
-                                                <option value="2">中转</option>
-                                                <option value="3">其他</option>
+                                                <option value="公布">公布</option>
+                                                <option value="销售">销售</option>
+                                                <option value="中转">中转</option>
+                                                <option value="其他">其他</option>
                                             </select>
                                         </div>
                                     </div>
@@ -221,9 +221,9 @@
                                         <div class="form-group">
                                             <label class="control-label">营业部</label>
                                             <select id="search_part" class="form-control">
-                                                <option value="0">北京营业部</option>
-                                                <option value="1">济南营业部</option>
-                                                <option value="2">首尔营业部</option>
+                                                <option value="济南">济南</option>
+                                                <option value="首尔">首尔</option>
+                                                <option value="曼谷">曼谷</option>
                                             </select>
                                         </div>
                                     </div>
@@ -252,7 +252,14 @@
                                     </div>
                                 </div>
                                 <div class="dataTables_wrapper no-footer">
-                                    <table id="product_list" class="table table-hover">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="dataTables_length" id="table_length">
+                                                <label>每页显示 <select name="sample_editable_1_length" aria-controls="sample_editable_1" class="form-control input-sm input-xsmall input-inline"><option value="5">5</option><option value="15">15</option><option value="20">20</option><option value="-1">All</option></select> 记录</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table id="product_list" class="table table-hover hide">
                                         <thead>
                                             <tr>
                                                 <th class="col-md-1"> <label class="mt-checkbox"><input type="checkbox" data-id="{{vv.id}}" class="ck_all" /><span></span></label> </th>
@@ -306,7 +313,7 @@
                 <td class="col-md-1">  {{vv.id}} </td>
                 <td> {{vv.code}} </td>
                 <td> {{vv.name}} </td>
-                <td> {{vv.type |setType}} </td>
+                <td> {{vv.type }} </td>
                 <td> {{vv.part1}} </td>
                 <td> {{vv.start}} </td>
                 <td> {{vv.end}} </td>
