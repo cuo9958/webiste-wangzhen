@@ -1,6 +1,7 @@
 var TableDatatablesEditable = function() {
 
     var handleTable = function() {
+        var nCopy = null;
 
         function restoreRow(oTable, nRow) {
             var aData = oTable.fnGetData(nRow);
@@ -30,9 +31,10 @@ var TableDatatablesEditable = function() {
             jqTds[11].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[11] + '">';
             jqTds[12].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[12] + '">';
             jqTds[13].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[13] + '">';
-            jqTds[14].innerHTML = '<a class="edit" href="">保存</a>';
-            jqTds[15].innerHTML = '<a class="cancel" href="">取消</a>';
-            jqTds[16].innerHTML = '<a class="copy" href="">复制</a>';
+            jqTds[14].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[14] + '">';
+            jqTds[15].innerHTML = '<a class="edit" href="">保存</a>';
+            jqTds[16].innerHTML = '<a class="cancel" href="">取消</a>';
+            jqTds[17].innerHTML = '<a class="copy" href="">复制</a>';
         }
 
         function saveRow(oTable, nRow) {
@@ -51,9 +53,10 @@ var TableDatatablesEditable = function() {
             oTable.fnUpdate(jqInputs[11].value, nRow, 11, false);
             oTable.fnUpdate(jqInputs[12].value, nRow, 12, false);
             oTable.fnUpdate(jqInputs[13].value, nRow, 13, false);
-            oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 14, false);
-            oTable.fnUpdate('<a class="delete" href="">删除</a>', nRow, 15, false);
-            oTable.fnUpdate('<a class="copy" href="">复制</a>', nRow, 15, false);
+            oTable.fnUpdate(jqInputs[13].value, nRow, 14, false);
+            oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 15, false);
+            oTable.fnUpdate('<a class="delete" href="">删除</a>', nRow, 16, false);
+            oTable.fnUpdate('<a class="copy" href="">复制</a>', nRow, 17, false);
             oTable.fnDraw();
         }
 
@@ -73,7 +76,8 @@ var TableDatatablesEditable = function() {
             oTable.fnUpdate(jqInputs[11].value, nRow, 11, false);
             oTable.fnUpdate(jqInputs[12].value, nRow, 12, false);
             oTable.fnUpdate(jqInputs[13].value, nRow, 13, false);
-            oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 14, false);
+            oTable.fnUpdate(jqInputs[13].value, nRow, 14, false);
+            oTable.fnUpdate('<a class="edit" href="">编辑</a>', nRow, 15, false);
             oTable.fnDraw();
         }
 
@@ -140,8 +144,7 @@ var TableDatatablesEditable = function() {
                     return;
                 }
             }
-
-            var aiNew = oTable.fnAddData(['', '', '', '', '', '', '', '', '', '', '', '', '', '']);
+            var aiNew = oTable.fnAddData(['', '', '', '', '', '', '', '', '', '', '', '', '', '', '']);
             var nRow = oTable.fnGetNodes(aiNew[0]);
             editRow(oTable, nRow);
             nEditing = nRow;
@@ -151,13 +154,17 @@ var TableDatatablesEditable = function() {
         table.on('click', '.delete', function(e) {
             e.preventDefault();
 
-            if (confirm("Are you sure to delete this row ?") == false) {
+            if (confirm("确定删除这条记录?") == false) {
                 return;
             }
-
             var nRow = $(this).parents('tr')[0];
-            oTable.fnDeleteRow(nRow);
-            alert("Deleted! Do not forget to do some ajax to sync with backend :)");
+            var nRowW = $(this).parents('tr').css("width");
+            var nRowH = $(this).parents('tr').css("height");
+            var delLine = '<div style="position: relative; ">' +
+                '<div style="width: ' + nRowW + '; position: absolute; top: ' + 0 + ';border-bottom:solid 1px #000 ">' +
+                '</div>' +
+                '</div>';
+            $(this).parents('tr').find("td:first").append(delLine)
         });
 
         table.on('click', '.cancel', function(e) {
@@ -171,12 +178,29 @@ var TableDatatablesEditable = function() {
                 nEditing = null;
             }
         });
+        $("#paste").on("click", function() {
+            if (nCopy == null) {
+                alert("请先复制！");
+                return;
+            }
+            $("#sample_editable_1 tbody").append(nCopy);
+        })
+        table.on('click', '.paste', function(e) {
+            e.preventDefault();
+            if (nCopy == null) {
+                alert("请先复制！");
+                rerurn;
+            }
+            $("#sample_editable_1 tbody").append(nCopy);
+            nCopy = null;
+        });
 
         table.on('click', '.copy', function(e) {
             e.preventDefault();
 
             var nRow = $(this).parents('tr')[0];
-            console.log(nRow)
+            nCopy = nRow;
+            console.log(nCopy)
         });
 
         table.on('click', '.edit', function(e) {
