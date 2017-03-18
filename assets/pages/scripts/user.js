@@ -31,7 +31,7 @@ function search(page) {
             $("#test").bootstrapPaginator({
                 currentPage: search_data.currPage,
                 totalPages: res.total,
-                onPageClicked: function (e, originalEvent, type, page) {
+                onPageChanged: function (a,b, page) {
                     search(page);
                 }
             });

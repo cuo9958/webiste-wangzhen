@@ -22,11 +22,11 @@ function search(page) {
     interfaces.querylist(search_data, function (res) {
         if (res) {
             clearHtml(template("tmp-list", res));
-            $("#test").empty().bootstrapPaginator({
+            $("#test").off().empty().bootstrapPaginator({
                 currentPage: search_data.currPage,
                 totalPages: res.total,
-                onPageClicked: function (e, originalEvent, type, page) {
-                    search(page);
+                onPageChanged: function (a, b, c) {
+                    search(c);
                 }
             });
         }

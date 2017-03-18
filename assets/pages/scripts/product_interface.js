@@ -127,15 +127,9 @@ var interfaces = {
             od: [
                 {
                     country1: "1",
-                    country2: "0",
-                    loc1: "aa",
-                    loc2: "bbb"
-                },
-                {
-                    country1: "1",
-                    country2: "0",
-                    loc1: "ss",
-                    loc2: "dd"
+                    country2: "1",
+                    loc1: "BKK",
+                    loc2: "KMG"
                 }
             ],
             range: "2",
