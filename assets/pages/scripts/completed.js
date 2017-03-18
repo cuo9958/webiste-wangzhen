@@ -1,27 +1,27 @@
-﻿/// <reference path="system_interface.js" />
+﻿/// <reference path="task_interface.js" />
+/// <reference path="../../global/plugins/template.js" />
+/// <reference path="system_interface.js" />
 /// <reference path="../../global/plugins/template.js" />
 var search_data = {
-    currPage:1
+    currPage: 1
 };
 
-var types = ["公布","销售","中转","其他"];
-template.helper("setType", function (d) {
-    return types[d];
-});
 
 function setData() {
     search_data.currPage = 1;
-    search_data.code = $("#search_code").val();
     search_data.name = $("#search_name").val();
     search_data.type = $("#search_type").val();
     search_data.part = $("#search_part").val();
+    search_data.oper = $("#search_oper").val();
+    search_data.start = $("#search_start").val();
+    search_data.end = $("#search_end").val();
     search_data.pageCount = parseInt($("#table_length select").val());
     search();
 }
 
 function search(page) {
     if (page) search_data.currPage = page;
-    interfaces.searchTodo(search_data, function (res) {
+    interfaces.searchCompleted(search_data, function (res) {
         if (res) {
             clearHtml(template("tmp-list", res));
             $("#test").bootstrapPaginator({
@@ -40,6 +40,14 @@ function clearHtml(html) {
 }
 
 $(function () {
+    if (jQuery().datepicker) {
+        $('.date-picker').datepicker({
+            rtl: App.isRTL(),
+            orientation: "left",
+            autoclose: true,
+            zIndexOffset:9999
+        });
+    }
     $("#btn_search").click(function () {
         setData();
     });
@@ -76,5 +84,5 @@ $(function () {
             toastr.info("请选择一个任务");
         }
     });
-    
+
 });

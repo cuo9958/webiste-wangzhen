@@ -13,6 +13,7 @@ function setData() {
     search_data.start = $("#start").val();
     search_data.end = $("#end").val();
     search_data.state = $("#state option:selected").text();
+    search_data.pageCount = parseInt($("#table_length select").val());
     search();
 }
 
@@ -21,7 +22,7 @@ function search(page) {
     interfaces.querylist(search_data, function (res) {
         if (res) {
             clearHtml(template("tmp-list", res));
-            $("#test").bootstrapPaginator({
+            $("#test").empty().bootstrapPaginator({
                 currentPage: search_data.currPage,
                 totalPages: res.total,
                 onPageClicked: function (e, originalEvent, type, page) {
@@ -32,6 +33,7 @@ function search(page) {
     });
 }
 function clearHtml(html) {
+    $("#product_list").removeClass("hide");
     $("#product_list tbody").html(html);
 }
 $(function () {
@@ -39,13 +41,17 @@ $(function () {
         $('.date-picker').datepicker({
             rtl: App.isRTL(),
             orientation: "left",
-            autoclose: true
+            autoclose: true,
+            zIndexOffset: 9999
         });
     }
+    $("#table_length select").change(function () {
+        search_data.pageCount = parseInt($("#table_length select").val());
+        search();
+    });
     $("#btn_search").click(function () {
         setData();
     });
-    setData();
     $("#product_list .ck_all").change(function () {
         if (this.checked) {
             $("#product_list .ck_item").each(function () { this.checked = true;});
