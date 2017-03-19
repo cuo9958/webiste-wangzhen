@@ -1,8 +1,20 @@
         var nCopy = null;
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "1000",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
         var TableDatatablesEditable = function() {
-
             var handleTable = function() {
-
                 function restoreRow(oTable, nRow) {
                     var aData = oTable.fnGetData(nRow);
                     var jqTds = $('>td', nRow);
@@ -83,21 +95,10 @@
                 var table = $('#sample_editable_1');
 
                 var oTable = table.dataTable({
-                    // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
-                    // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js). 
-                    // So when dropdowns used the scrollable div should be removed. 
-                    //"dom": "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
-
                     "lengthMenu": [
                         [5, 15, 20, -1],
                         [5, 15, 20, "All"] // change per page values here
                     ],
-
-                    // Or you can use remote translation file
-                    //"language": {
-                    //   url: '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Portuguese.json'
-                    //},
-
                     // set the initial value
                     "pageLength": 5,
 
@@ -130,18 +131,20 @@
                 $('#sample_editable_1_new').click(function(e) {
                     e.preventDefault();
                     if (nNew && nEditing) {
-                        if (confirm("Previose row not saved. Do you want to save it ?")) {
-                            saveRow(oTable, nEditing); // save
-                            $(nEditing).find("td:first").html("Untitled");
-                            nEditing = null;
-                            nNew = false;
+                        bootbox.confirm("需要保存吗？", function(result) {
+                            if (result) {
+                                saveRow(oTable, nEditing); // save
+                                $(nEditing).find("td:first").html("Untitled");
+                                nEditing = null;
+                                nNew = false;
+                            } else {
+                                oTable.fnDeleteRow(nEditing); // cancel
+                                nEditing = null;
+                                nNew = false;
+                                return;
+                            }
+                        })
 
-                        } else {
-                            oTable.fnDeleteRow(nEditing); // cancel
-                            nEditing = null;
-                            nNew = false;
-                            return;
-                        }
                     }
                     var aiNew = oTable.fnAddData(['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']);
                     var nRow = oTable.fnGetNodes(aiNew[0]);
@@ -152,18 +155,21 @@
 
                 table.on('click', '.delete', function(e) {
                     e.preventDefault();
-
-                    if (confirm("确定删除这条记录?") == false) {
-                        return;
-                    }
-                    var nRow = $(this).parents('tr')[0];
-                    var nRowW = $(this).parents('tr').css("width");
-                    var nRowH = $(this).parents('tr').css("height");
-                    var delLine = '<div style="position: relative; ">' +
-                        '<div style="width: ' + nRowW + '; position: absolute; top: ' + 0 + ';border-bottom:solid 1px #000 ">' +
-                        '</div>' +
-                        '</div>';
-                    $(this).parents('tr').find("td:first").append(delLine)
+                    var that = this;
+                    bootbox.confirm("确定删除这条记录", function(result) {
+                        if (result == false) {
+                            return;
+                        } else {
+                            var nRow = $(that).parents('tr')[0];
+                            var nRowW = $(that).parents('tr').css("width");
+                            var nRowH = $(that).parents('tr').css("height");
+                            var delLine = '<div style="position: relative; ">' +
+                                '<div style="width: ' + nRowW + '; position: absolute; top: ' + 0 + ';border-bottom:solid 1px #000 ">' +
+                                '</div>' +
+                                '</div>';
+                            $(that).parents('tr').find("td:first").append(delLine);
+                        }
+                    })
                 });
 
                 table.on('click', '.cancel', function(e) {
@@ -180,11 +186,11 @@
 
                 $("#paste").on("click", function() {
                     if (nCopy == null) {
-                        alert("请先复制！");
+                        toastr.info("请先复制！");
                         return;
                     }
 
-                    var aiNew = oTable.fnAddData([nCopy[0], nCopy[1], nCopy[2], nCopy[3], nCopy[4], nCopy[5], nCopy[6], nCopy[7], nCopy[8], nCopy[9], nCopy[10], nCopy[11], nCopy[12], nCopy[13], nCopy[14], '', '', '']);
+                    var aiNew = oTable.fnAddData([nCopy[0], nCopy[1], nCopy[2], nCopy[3], nCopy[4], nCopy[5], nCopy[6], nCopy[7], nCopy[8], nCopy[9], nCopy[10], nCopy[11], nCopy[12], nCopy[13], nCopy[14], '<a class="edit" href="">编辑</a>', '<a class="delete" href="">删除</a>', '<a class="copy" href="">复制</a>']);
                     var nRow = oTable.fnGetNodes(aiNew[0]);
                     editRow(oTable, nRow);
                     nEditing = nRow;
@@ -197,6 +203,8 @@
                     // var nRow = $(this).parents('tr')[0].cloneNode(true);
                     var nRow = oTable.fnGetData($(this).parents('tr'));
                     nCopy = nRow;
+                    toastr.info("复制成功！");
+
                 });
 
                 table.on('click', '.edit', function(e) {
@@ -215,7 +223,7 @@
                         saveRow(oTable, nEditing);
                         console.log(nEditing)
                         nEditing = null;
-                        alert("Updated! Do not forget to do some ajax to sync with backend :)");
+                        toastr.info("更新成功！");
                     } else {
                         /* No edit in progress - let's start one */
                         editRow(oTable, nRow);
@@ -223,7 +231,6 @@
                     }
                 });
             }
-
             return {
                 //main function to initiate the module
                 init: function() {
@@ -231,7 +238,3 @@
                 }
             };
         }();
-
-        jQuery(document).ready(function() {
-            TableDatatablesEditable.init();
-        });
