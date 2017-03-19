@@ -35,12 +35,24 @@ var interfaces = {
     //搜索角色
     searchRole: function (data, fn) {
         console.log(data);
-        fn({ data: roles, total: 1 });
+        var res = [];
+        var len = data.currPage * data.pageCount;
+        if (data.pageCount == -1) len = roles.length;
+        for (var i = 0; i < len; i++) {
+            if (roles[i]) res[i] = roles[i];
+        }
+        fn({ data: res, total: 1 });
     },
     //搜索数据
     searchData: function (data, fn) {
         console.log(data);
-        fn({ data: datas, total: 1 });
+        var res = [];
+        var len = data.currPage * data.pageCount
+        if (data.pageCount == -1) len = datas.length;
+        for (var i = 0; i < len; i++) {
+            if (datas[i]) res[i] = datas[i];
+        }
+        fn({ data: res, total: 1 });
     },
     //删除角色
     delRole: function (id, fn) {
@@ -130,6 +142,11 @@ var interfaces = {
                 if (data.state != tt.state) continue;
             }
             if(tt)res.push(tt);
+        }
+        var len = data.currPage * data.pageCount
+        if (data.pageCount == -1) len = res.length;
+        if (res.length > len) {
+            res.length = len;
         }
         fn({ data: res, total: 1 });
     },

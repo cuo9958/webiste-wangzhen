@@ -114,22 +114,22 @@ $(function () {
                 treeObj.removeNode(nodes[i]);
             }
         }
-        //var treeObj = $.fn.zTree.getZTreeObj("tree1");
-        //var nodes = treeObj.getCheckedNodes(true);
-        //console.log(nodes)
-        //toastr.info("操作成功");
-        //setTimeout(function () {
-        //    window.location.reload();
-        //}, 500);
     });
     $("#btn_cancel").click(function () {
         var treeObj = $.fn.zTree.getZTreeObj("tree2");
         var nodes = treeObj.getCheckedNodes(true);
         console.log(nodes)
         toastr.info("操作成功");
-        setTimeout(function () {
-            window.location.reload();
-        }, 500);
+        if (nodes.length == 0) {
+            toastr.info("请选择一个权限");
+        } else {
+            var tt = $.fn.zTree.getZTreeObj("tree1");
+            tt.addNodes(null, nodes);
+            tt.checkAllNodes(false);
+            for (var i = 0, l = nodes.length; i < l; i++) {
+                treeObj.removeNode(nodes[i]);
+            }
+        }
     });
     
     $("#btn_save_back").click(function () {
