@@ -30,6 +30,11 @@
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" />
     <link href="./assets/pages/css/index.css" rel="stylesheet" />
+    <style>
+        .form-group {
+            margin-bottom: 6px;
+        }
+    </style>
 </head>
 <!-- END HEAD -->
 
@@ -192,13 +197,15 @@
                         <div class="portlet light ">
                             <div class="portlet-title">
                                 <div class="row form-group">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
+                                            <label for="">航司</label>
                                             <input id="title" type="text" placeholder="航司" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
+                                            <label for="">Tariff<span style="color: red"> *</span></label>
                                             <select class="form-control">
                                                 <option value="0">TPFG(三区内国际公布)</option>
                                                 <option value="1">TPFGPV(三区内国际私有)</option>
@@ -207,26 +214,22 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
-                                            <input id="title" type="text" placeholder="航司" class="form-control">
+                                            <label for="">Fare Class</label>
+                                            <input id="title" type="text" placeholder="Fare Class" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row form-group">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
+                                            <label for="">始发</label>
                                             <input id="title" type="text" placeholder="始发" class="form-control">
                                         </div>
                                     </div>
-
-                                    <div class="col-md-2">
-                                        <select class="form-control">
-                                            <option value="0">OW</option>
-                                            <option value="1">RT</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
+                                        <label for=""> </label>
                                         <div class="form-group md-checkbox-inline">
                                             <div class="md-checkbox">
                                                 <input type="checkbox" id="checkbox1" class="md-check">
@@ -239,30 +242,47 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
+                                        <label for=""> </label>
+                                        <select class="form-control">
+                                            <option value="0">OW</option>
+                                            <option value="1">RT</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-3">
                                         <div class="form-group">
+                                            <label for="">到达</label>
                                             <input id="title" type="text" placeholder="到达" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row form-group">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
+                                            <label for="">文件编号<span style="color: red"> *</span></label>
                                             <input id="title" type="text" placeholder="文件编号" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-3">
                                         <div class="form-group">
+                                            <label for="">Rule</label>
                                             <input id="title" type="text" placeholder="Rule" class="form-control">
                                         </div>
                                     </div>
-
-                                    <div class="col-md-4">
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-3">
                                         <div class="form-group">
+                                            <label for="">Footnote</label>
                                             <input id="title" type="text" placeholder="Footnote" class="form-control">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="btn-group">
@@ -301,8 +321,8 @@
                                                         <div class="col-md-6">
                                                             <div class="btn-group">
                                                                 <button id="paste" class="btn purple"> 粘贴
-                                                                <i class="fa fa-paste"></i>
-                                                            </button>
+                                                                    <i class="fa fa-paste"></i>
+                                                                    </button>
                                                             </div>
                                                             <div class="btn-group">
                                                                 <button id="sample_editable_1_new" class="btn blue"> 插入
@@ -400,7 +420,7 @@
                                                             </th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody id="_tbody">
                                                         <tr role="row" class="odd">
                                                             <td class="sorting_1"> 1
                                                             </td>
