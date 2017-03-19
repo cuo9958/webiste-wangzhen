@@ -6,18 +6,19 @@ function setData() {
     search_data.currPage = 1;
     search_data.title = $("#search_name").val();
     search_data.des = $("#search_des").val();
+    search_data.pageCount = parseInt($("#table_length select").val());
     search();
 }
 
 function search(page) {
     if (page) search_data.currPage = page;
-    interfaces.searchRole(search_data, function (res) {
+    interfaces.searchData(search_data, function (res) {
         if (res) {
             clearHtml(template("tmp-list", res));
             $("#test").bootstrapPaginator({
                 currentPage: search_data.currPage,
                 totalPages: res.total,
-                onPageClicked: function (e, originalEvent, type, page) {
+                onPageChanged: function (a, b, page) {
                     search(page);
                 }
             });
@@ -25,14 +26,18 @@ function search(page) {
     });
 }
 function clearHtml(html) {
+    $("#product_list").removeClass("hide");
     $("#list").html(html);
 }
 
 $(function () {
+    $("#table_length select").change(function () {
+        search_data.pageCount = parseInt($("#table_length select").val());
+        search();
+    });
     $("#btn_search").click(function () {
         setData();
     });
-    setData();
     $("#product_list .ck_all").change(function () {
         if (this.checked) {
             $("#product_list .ck_item").each(function () { this.checked = true; });

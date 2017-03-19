@@ -1,37 +1,6 @@
 ﻿/// <reference path="../../global/plugins/bootstrap-paginator.min.js" />
 /// <reference path="../../global/plugins/template.js" />
 /// <reference path="product_interface.js" />
-var yuqi, tiaozheng, xiaoshou, jingzheng, fenxi;
-fenxi = new UE.getEditor("fenxi", {
-    imagePath: "",
-    imageManagerPath: "/",
-    filePath: "/",
-    scrawlPath: "/"
-});
-jingzheng = new UE.getEditor("jingzheng", {
-    imagePath: "",
-    imageManagerPath: "/",
-    filePath: "/",
-    scrawlPath: "/"
-});
-xiaoshou = new UE.getEditor("xiaoshou", {
-    imagePath: "",
-    imageManagerPath: "/",
-    filePath: "/",
-    scrawlPath: "/"
-});
-tiaozheng = new UE.getEditor("tiaozheng", {
-    imagePath: "",
-    imageManagerPath: "/",
-    filePath: "/",
-    scrawlPath: "/"
-});
-yuqi = new UE.getEditor("yuqi", {
-    imagePath: "",
-    imageManagerPath: "/",
-    filePath: "/",
-    scrawlPath: "/"
-});
 
 function setModel(id) {
     interfaces.getProduct(id, function (res) {
@@ -73,14 +42,15 @@ function setModel(id) {
             $('.date-picker').datepicker({
                 rtl: App.isRTL(),
                 format: "yyyy-m-d",
-                orientation: "left",
-                autoclose: true
+                orientation: "auto",
+                autoclose: true,
+                zIndexOffset: 9999,
             });
-            if (fenxi) fenxi.setContent(res.fenxi);
-            if (tiaozheng) tiaozheng.setContent(res.tiaozheng);
-            if (xiaoshou) xiaoshou.setContent(res.xiaoshou);
-            if (jingzheng) jingzheng.setContent(res.jingzheng);
-            if (yuqi) yuqi.setContent(res.yuqi);
+            $("#fenxi").val(res.fenxi);
+            $("#tiaozheng").val(res.tiaozheng);
+            $("#xiaoshou").val(res.xiaoshou);
+            $("#jingzheng").val(res.jingzheng);
+            $("#yuqi").val(res.yuqi);
 
         }
     });
@@ -107,8 +77,9 @@ $(function () {
         $('.date-picker').datepicker({
             rtl: App.isRTL(),
             format: "yyyy-m-d",
-            orientation: "left",
-            autoclose: true
+            orientation: "auto",
+            autoclose: true,
+            zIndexOffset: 9999,
         });
     });
     $("#begin").on("click", ".btn_del", function () {
@@ -116,6 +87,12 @@ $(function () {
     });
     $("#except .mt-repeater-add").click(function () {
         $("#except .group").append(template("tmp-except", {}));
+        $('.date-picker').datepicker({
+            rtl: App.isRTL(),
+            format: "yyyy-m-d",
+            orientation: "auto",
+            autoclose: true, zIndexOffset: 9999,
+        });
     });
     $("#except").on("click", ".btn_del", function () {
         $(this).parent().parent().remove();
@@ -134,7 +111,9 @@ $(function () {
             rtl: App.isRTL(),
             format: "yyyy-m-d",
             orientation: "left",
-            autoclose: true
+            autoclose: true,
+            zIndexOffset: 9999,
+            orientation: "bottom"
         });
     }
     $("#btn_save").click(function () {
@@ -150,11 +129,11 @@ $(function () {
             travel: [],
             except: [],
             od: [],
-            fenxi: fenxi.getContent(),
-            tiaozheng: tiaozheng.getContent(),
-            xiaoshou: xiaoshou.getContent(),
-            jingzheng: jingzheng.getContent(),
-            yuqi: yuqi.getContent(),
+            fenxi: $("#fenxi").val(),
+            tiaozheng: $("#tiaozheng").val(),
+            xiaoshou: $("#xiaoshou").val(),
+            jingzheng: $("#jingzheng").val(),
+            yuqi: $("#yuqi").val(),
         }
         if (!data.title) {
             toastr.error("请填写产品名称");
@@ -208,7 +187,7 @@ $(function () {
             if (res) {
                 toastr.info("保存成功");
                 setTimeout(function () {
-                    window.location.href = "product_price?id="+res.id;
+                    window.location.href = "product_price.html?id="+res.id;
                 }, 500);
             }
         });

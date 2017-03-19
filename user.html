@@ -216,9 +216,9 @@
                                         <div class="form-group">
                                             <label class="control-label">角色</label>
                                             <select id="search_role" class="form-control">
-                                                <option value="0">全部</option>
-                                                <option value="1">航线管理员</option>
-                                                <option value="2">收益部经理</option>
+                                                <option value="">全部</option>
+                                                <option value="航线管理员">航线管理员</option>
+                                                <option value="收益部经理">收益部经理</option>
                                             </select>
                                         </div>
                                     </div>
@@ -226,8 +226,9 @@
                                         <div class="form-group">
                                             <label class="control-label">状态</label>
                                             <select id="search_state" class="form-control">
-                                                <option value="0">启用</option>
-                                                <option value="1">停用</option>
+                                                <option value="">全部</option>
+                                                <option value="启用">启用</option>
+                                                <option value="停用">停用</option>
                                             </select>
                                         </div>
                                     </div>
@@ -263,7 +264,14 @@
                                     </div>
                                 </div>
                                 <div class="dataTables_wrapper no-footer">
-                                    <table id="product_list" class="table table-hover">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="dataTables_length" id="table_length">
+                                                <label>每页显示 <select name="sample_editable_1_length" aria-controls="sample_editable_1" class="form-control input-sm input-xsmall input-inline"><option value="5">5</option><option value="15">15</option><option value="20">20</option><option value="-1">All</option></select> 记录</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table id="product_list" class="table table-hover hide">
                                         <thead>
                                             <tr>
                                                 <th class="col-md-1"> <label class="mt-checkbox"><input type="checkbox" data-id="{{vv.id}}" class="ck_all" /><span></span></label> </th>
@@ -317,12 +325,12 @@
                 <td class="text-center"> {{vv.id}} </td>
                 <td> <a href="user_detail.html?id={{vv.id}}">{{vv.user}} </a></td>
                 <td> {{vv.name}} </td>
-                <td> {{vv.role |setRole}} </td>
+                <td> {{vv.role}} </td>
                 <td> {{vv.data}} </td>
                 <td> {{vv.trx}}名称 </td>
                 <td> {{vv.tell}} </td>
                 <td> {{vv.phone}} </td>
-                <td> {{vv.state |setState}} </td>
+                <td> {{vv.state}} </td>
             </tr>
             {{/each}}
         </script>

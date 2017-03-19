@@ -19,14 +19,40 @@ var products = [
     { id: 17, code: "SC17S27", title: "暑运山航全国经山东中转至曼谷运价2017.0711-2017.0826、1001-1007", type: "中转", start: "2017/7/11", end: "2017/10/28", range: "全球GDS", state: "已发布", createDate: "2017/1/17" },
     { id: 18, code: "TAO1737", title: "青岛-大阪预售D 舱20170227-20171231", type: "促销", start: "2017/2/7", end: "2017/12/31", range: "全球GDS", state: "已发布", createDate: "2017/1/17" },
     { id: 19, code: "TEL17121", title: "青岛-大阪预售D 舱20170227-20171231", type: "促销", start: "2017/2/7", end: "2017/12/31", range: "直销", state: "已发布", createDate: "2017/1/17" },
-    { id: 20, code: "SC17S25", title: "山航全国经山东中转至首尔运价07月11日-08月26日,10月01日-10月07日", type: "中转", start: "2017/7/11", end: "2017/10/7", range: "中国大陆", state: "已发布", createDate: "2017/1/17" },
+    { id: 20, code: "SC17S25", title: "山航全国经山东中转至首尔运价07月11日-08月26日,10月01日-10月07日", type: "中转", start: "2017/7/11", end: "2017/10/7", range: "中国大陆", state: "已发布", createDate: "2017/1/17" }
+];
+var prices = [
+    { id: 1, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "B", stay: "N/A", or: "1", fare: "BOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 2, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "C", stay: "N/A", or: "1", fare: "COW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 3, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "D", stay: "N/A", or: "1", fare: "DOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 4, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "E", stay: "N/A", or: "1", fare: "GOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 5, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "G", stay: "12M", or: "1", fare: "HOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 6, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "M", stay: "N/A", or: "1", fare: "KOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 7, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "T", stay: "N/A", or: "1", fare: "LOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 8, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "Y", stay: "N/A", or: "1", fare: "MOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 9, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "U", stay: "N/A", or: "1", fare: "QOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 10, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "R", stay: "N/A", or: "1", fare: "UOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 11, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "E", stay: "N/A", or: "1", fare: "VOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 12, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "H", stay: "1M", or: "1", fare: "YOW16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 13, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "F", stay: "3M", or: "1", fare: "BRT1Y16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 14, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "V", stay: "3M", or: "1", fare: "CRT1Y16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 15, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "Z", stay: "3M", or: "2", fare: "DRT1Y16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 16, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "E", stay: "1M", or: "2", fare: "GRT3M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 17, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "A", stay: "1M", or: "2", fare: "HRT6M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 18, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "B", stay: "12M", or: "2", fare: "KRT6M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 19, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "T", stay: "6M", or: "2", fare: "LRT3M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 20, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "Y", stay: "3M", or: "2", fare: "MRT1Y16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 21, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "U", stay: "3M", or: "2", fare: "QRT3M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 22, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "I", stay: "6M", or: "2", fare: "URT1M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 23, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "D", stay: "3M", or: "2", fare: "VRT1M16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" },
+    { id: 24, hs: "SC", triff: "TPFG", from: "BKK", to: "KMG", cang: "B", stay: "1M", or: "2", fare: "YRT1Y16B", path: "0001", currency: "THB", price: "000012300.00", ei: "NON-END/NON-RER/NON-REF" }
 ];
 var interfaces = {
     //查询产品
     querylist: function (data, fn) {
         var res = {
             data: [],
-            total: 1
+            total: 4
         }
         console.log(data);
         for (var i = 0; i < products.length; i++) {
@@ -54,7 +80,7 @@ var interfaces = {
         console.log(res);
         if (data.pageCount != -1 && res.data.length > data.pageCount) {
             res.total = res.data.length / data.pageCount;
-            if (res.total % data.pageCount > 0) {
+            if (res.data.length % data.pageCount > 0) {
                 res.total++;
             }
             for (var i = 0; i < data.pageCount; i++) {
@@ -82,8 +108,8 @@ var interfaces = {
     //获取产品的详情
     getProduct: function (id, fn) {
         var data = {
-            title: "测试标题",
-            code: "code123",
+            title: "曼谷昆明航线销售运价",
+            code: "BKK1703",
             end: "2017-3-30",
             except: [
                 {
@@ -95,26 +121,20 @@ var interfaces = {
                     date_start: "2017-3-23"
                 }
             ],
-            fenxi: "<p>测试</p>",
+            fenxi: "首尔-济南旅客以济南组织的团队和首尔回程散客为主。我公司在韩国竞争力不如大韩航空，主要是依靠济南出港的回程旅客为主要客源支撑。",
             isCheck: true,
-            jingzheng: '<p><span style="color: rgb(51, 51, 51); font-family: &#39;Open Sans&#39;, sans-serif; font-size: 14px; line-height: 20px; text-align: right;  background-color: rgb(255, 255, 255);">竞争</span></p>',
+            jingzheng: '山航在首尔-济南航线上主要竞争者是大韩航空。韩国出发的韩国旅客绝大多数会选择大韩航空，进行访问、商务和旅行。大韩航空的旅客相对高端。大韩航空的夏秋促销运价为25万韩币，比我公司的V舱促销高4万韩币。由于旅客构成不同和旅客偏好不同，大韩航空的价格对我公司渠道影响较小。',
             od: [
                 {
                     country1: "1",
-                    country2: "0",
-                    loc1: "aa",
-                    loc2: "bbb"
-                },
-                {
-                    country1: "0",
                     country2: "1",
-                    loc1: "ss",
-                    loc2: "dd"
+                    loc1: "BKK",
+                    loc2: "KMG"
                 }
             ],
             range: "2",
             start: "2017-3-8",
-            tiaozheng: '<p><span style="color: rgb(51, 51, 51); font-family: &#39;Open Sans&#39;, sans-serif; font-size: 14px; line-height: 20px; text-align: right;  background-color: rgb(255, 255, 255);">计划</span></p>',
+            tiaozheng: '换季产品',
             travel: [
                 {
                     date_end: "2017-3-25",
@@ -126,8 +146,8 @@ var interfaces = {
                 }
             ],
             type: "1",
-            xiaoshou: "",
-            yuqi: ""
+            xiaoshou: "21万、18万的散客促销价格是我公司夏秋一直沿用的价格。",
+            yuqi: "本份产品预计可以保持首尔-济南的旅客流量稳定。"
         }
         setTimeout(function () {
             fn(data);
@@ -136,14 +156,7 @@ var interfaces = {
     //获取运价
     getPrice: function (id, fn) {
         var result = [];
-        for (var i = 0; i < 5; i++) {
-            var temp = {
-                id: i + 1,
-
-            }
-            result.push(temp);
-        }
-        fn(result);
+        fn(prices);
     },
     //添加运价
     addPrice: function (d, fn) {

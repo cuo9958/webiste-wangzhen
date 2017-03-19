@@ -27,7 +27,7 @@ function search(page) {
             $("#test").bootstrapPaginator({
                 currentPage: search_data.currPage,
                 totalPages: res.total,
-                onPageClicked: function (e, originalEvent, type, page) {
+                onPageChanged: function (a,b, page) {
                     search(page);
                 }
             });
@@ -45,7 +45,8 @@ $(function () {
             rtl: App.isRTL(),
             orientation: "left",
             autoclose: true,
-            zIndexOffset:9999
+            zIndexOffset: 9999,
+            orientation: "bottom"
         });
     }
     $("#btn_search").click(function () {

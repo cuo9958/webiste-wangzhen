@@ -88,31 +88,39 @@ $(function () {
                 $("#search_des").val(res.title);
             }
         });
+    } else {
+        initzTree2();
     }
     $("#sel_all").click(function () {
         var fl = this.checked;
-        if (fl) {
-            $("#tree1").jstree("select_all");
-        } else {
-            $("#tree1").jstree("deselect_all");
-        }
+        var treeObj = $.fn.zTree.getZTreeObj("tree1");
+        treeObj.checkAllNodes(fl);
     });
     $("#can_all").click(function () {
         var fl = this.checked;
-        if (fl) {
-            $("#tree2").jstree("select_all");
-        } else {
-            $("#tree2").jstree("deselect_all");
-        }
+        var treeObj = $.fn.zTree.getZTreeObj("tree2");
+        treeObj.checkAllNodes(fl);
     });
     $("#btn_add").click(function () {
         var treeObj = $.fn.zTree.getZTreeObj("tree1");
         var nodes = treeObj.getCheckedNodes(true);
-        console.log(nodes)
-        toastr.info("操作成功");
-        setTimeout(function () {
-            window.location.reload();
-        }, 500);
+        if (nodes.length == 0) {
+            toastr.info("请选择一个权限");
+        } else {
+            var tt = $.fn.zTree.getZTreeObj("tree2");
+            tt.addNodes(null, nodes);
+            tt.checkAllNodes(false);
+            for (var i = 0, l = nodes.length; i < l; i++) {
+                treeObj.removeNode(nodes[i]);
+            }
+        }
+        //var treeObj = $.fn.zTree.getZTreeObj("tree1");
+        //var nodes = treeObj.getCheckedNodes(true);
+        //console.log(nodes)
+        //toastr.info("操作成功");
+        //setTimeout(function () {
+        //    window.location.reload();
+        //}, 500);
     });
     $("#btn_cancel").click(function () {
         var treeObj = $.fn.zTree.getZTreeObj("tree2");
@@ -121,6 +129,13 @@ $(function () {
         toastr.info("操作成功");
         setTimeout(function () {
             window.location.reload();
+        }, 500);
+    });
+    
+    $("#btn_save_back").click(function () {
+        toastr.success("保存成功");
+        setTimeout(function () {
+            window.location.href = "role.html";
         }, 500);
     });
 });

@@ -8,11 +8,11 @@ var search_data = {
 function setData() {
     search_data.currPage = 1;
     search_data.title = $("#title").val();
-    search_data.type = $("#type option:selected").text();
+    search_data.type = $("#type").val();
     search_data.code = $("#code").val();
     search_data.start = $("#start").val();
     search_data.end = $("#end").val();
-    search_data.state = $("#state option:selected").text();
+    search_data.state = $("#state").val();
     search_data.pageCount = parseInt($("#table_length select").val());
     search();
 }
@@ -22,11 +22,11 @@ function search(page) {
     interfaces.querylist(search_data, function (res) {
         if (res) {
             clearHtml(template("tmp-list", res));
-            $("#test").empty().bootstrapPaginator({
+            $("#test").off().empty().bootstrapPaginator({
                 currentPage: search_data.currPage,
                 totalPages: res.total,
-                onPageClicked: function (e, originalEvent, type, page) {
-                    search(page);
+                onPageChanged: function (a, b, c) {
+                    search(c);
                 }
             });
         }
@@ -40,9 +40,9 @@ $(function () {
     if (jQuery().datepicker) {
         $('.date-picker').datepicker({
             rtl: App.isRTL(),
-            orientation: "left",
             autoclose: true,
-            zIndexOffset: 9999
+            zIndexOffset: 9999,
+            orientation:"bottom"
         });
     }
     $("#table_length select").change(function () {
@@ -100,7 +100,7 @@ $(function () {
     $("#btn_add_price").click(function () {
         var id = $(".ck_item:checked").eq(0).data("id");
         if (id) {
-            window.location.href = "product_price.html?id=" + id;
+            window.location.href = "product_price.html?cid=" + id;
         } else {
             toastr.info("请选择一个产品");
         }
