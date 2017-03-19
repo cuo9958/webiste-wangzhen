@@ -14,7 +14,7 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
     <link href="./assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="./assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="./assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -201,24 +201,24 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">航司</label>
-                                            <input id="title" value="SC" type="text" placeholder="航司" class="form-control">
+                                            <input id="title" type="text" placeholder="航司" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Tariff<span style="color: red"> *</span></label>
-                                            <select id="search_tariff" class="form-control">
-                                                <option value="TPFG">TPFG(三区内国际公布)</option>
-                                                <option value="TPFGPV">TPFGPV(三区内国际私有)</option>
-                                                <option value="FBRA3P">FBRA3P(三区内国际直销)</option>
-                                                <option value="TPFD">TPFD(国内)</option>
+                                            <select class="form-control">
+                                                <option value="0">TPFG(三区内国际公布)</option>
+                                                <option value="1">TPFGPV(三区内国际私有)</option>
+                                                <option value="2">FBRA3P(三区内国际直销)</option>
+                                                <option value="3">TPFD(国内)</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Fare Class</label>
-                                            <input id="search_fare" type="text" placeholder="Fare Class" class="form-control">
+                                            <input id="title" type="text" placeholder="Fare Class" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -226,7 +226,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">始发</label>
-                                            <input id="search_s_con" type="text" placeholder="始发" class="form-control">
+                                            <input id="title" type="text" placeholder="始发" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -246,8 +246,8 @@
                                     <div class="col-md-2">
                                         <label for=""> </label>
                                         <select class="form-control">
-                                            <option value="OW">OW</option>
-                                            <option value="RT">RT</option>
+                                            <option value="0">OW</option>
+                                            <option value="1">RT</option>
                                         </select>
                                     </div>
                                 </div>
@@ -255,7 +255,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">到达</label>
-                                            <input id="search_d_con" type="text" placeholder="到达" class="form-control">
+                                            <input id="title" type="text" placeholder="到达" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -263,19 +263,19 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">文件编号<span style="color: red"> *</span></label>
-                                            <input  type="text" placeholder="文件编号" class="form-control">
+                                            <input id="title" type="text" placeholder="文件编号" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Rule</label>
-                                            <input  type="text" placeholder="Rule" class="form-control">
+                                            <input id="title" type="text" placeholder="Rule" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="">Footnote</label>
-                                            <input  type="text" placeholder="Footnote" class="form-control">
+                                            <input id="title" type="text" placeholder="Footnote" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -292,7 +292,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="content" class="portlet-body hide">
+                        <div id="content" style="display: none;" class="portlet-body">
                             <div class="col-md-12">
                                 <ul class="nav nav-tabs" style="margin-bottom: 0">
                                     <li id="t1" class="active">
@@ -305,152 +305,28 @@
                                 <div class="tab-content">
                                     <!-- BEGIN EXAMPLE TABLE PORTLET-->
                                     <div class="portlet light tab-pane fade active in" id="tab_2_1">
+                                        <div class="portlet-title">
+                                            <div class="caption font-dark">
+                                                <i class="icon-settings font-dark"></i>
+                                                <span class="caption-subject bold uppercase"> 查询结果 </span>
+                                            </div>
+                                        </div>
                                         <div class="portlet-body">
                                             <div class="table-toolbar">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="btn-group">
-                                                            <button id="btn_copy" class="btn purple">
-                                                                复制
-                                                                <i class="fa fa-copy"></i>
-                                                            </button>
+                                                            <button id="paste" class="btn purple"> 粘贴
+                                                                    <i class="fa fa-paste"></i>
+                                                                    </button>
                                                         </div>
                                                         <div class="btn-group">
-                                                            <button id="btn_add" class="btn blue">
-                                                                插入
+                                                            <button id="sample_editable_1_new" class="btn blue"> 插入
                                                                 <i class="fa fa-plus"></i>
                                                             </button>
                                                         </div>
                                                         <div class="btn-group">
-                                                            <button id="btn_cancel" class="btn green">
-                                                                取消
-                                                                <i class="fa fa-arrow-left"></i>
-                                                            </button>
-                                                        </div>
-                                                        <div class="btn-group">
-                                                            <button id="btn_update" class="btn blue">
-                                                                保存
-                                                                <i class="fa fa-save"></i>
-                                                            </button>
-                                                        </div>
-                                                        <div class="btn-group">
-                                                            <button id="btn_save" class="btn red">
-                                                                提交修改
-                                                                <i class="fa fa-upload"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="btn-group pull-right">
-                                                            <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">
-                                                                工具
-                                                                <i class="fa fa-angle-down"></i>
-                                                            </button>
-                                                            <ul class="dropdown-menu pull-right">
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-print"></i> 打印
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-file-pdf-o"></i> 导出PDF
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="javascript:;">
-                                                                        <i class="fa fa-file-excel-o"></i> 导出Excel
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="dataTables_length" id="table_length">
-                                                        <label>每页显示 <select name="sample_editable_1_length" aria-controls="sample_editable_1" class="form-control input-sm input-xsmall input-inline"><option value="5">5</option><option value="15">15</option><option value="20">20</option><option value="-1">All</option></select> 记录</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="table-scrollable">
-                                                <table class="table table-hover table-bordered table-striped order-column" id="product_list">
-                                                    <thead>
-                                                        <tr>
-                                                            <th> <label class="mt-checkbox"><input type="checkbox" class="ck_all" /><span></span></label></th>
-                                                            <th>
-                                                                序号
-                                                            </th>
-                                                            <th>
-                                                                始发
-                                                            </th>
-                                                            <th>
-                                                                到达
-                                                            </th>
-                                                            <th>
-                                                                始发国家
-                                                            </th>
-                                                            <th>
-                                                                到达国家
-                                                            </th>
-                                                            <th>
-                                                                Rule
-                                                            </th>
-                                                            <th>
-                                                                文件编号
-                                                            </th>
-                                                            <th>
-                                                                Fare Class
-                                                            </th>
-                                                            <th>
-                                                                OW/RT
-                                                            </th>
-                                                            <th>
-                                                                Routing
-                                                            </th>
-                                                            <th>
-                                                                Footnote
-                                                            </th>
-                                                            <th>
-                                                                货币
-                                                            </th>
-                                                            <th>
-                                                                价格
-                                                            </th>
-                                                            <th>
-                                                                生效日期
-                                                            </th>
-                                                            <th>
-                                                                失效日期
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="_tbody"></tbody>
-                                                </table>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div id="test" class="dataTables_paginate paging_bootstrap_number text-right">
-                                                        <ul id="pagation" class="pagination" style="visibility: visible;"></ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="portlet light tab-pane fade" id="tab_2_2">
-                                        <div class="portlet-title">
-                                            <div class="caption font-dark">
-                                                <i class="icon-settings font-dark"></i>
-                                                <span class="caption-subject bold uppercase"> 修改结果 </span>
-                                            </div>
-                                        </div>
-                                        <div class="portlet-body">
-                                            <div class="table-toolbar">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="btn-group">
-                                                            <button id="btn_sub" class="btn red"> 提交审批
+                                                            <button id="xiugai" class="btn red"> 提交修改
                                                                 <i class="fa fa-upload"></i>
                                                             </button>
                                                         </div>
@@ -481,58 +357,183 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <table class="table table-hover table-bordered table-striped order-column" >
+                                            <table class="table table-striped table-hover table-bordered dataTable no-footer" id="sample_editable_1" role="grid" aria-describedby="sample_editable_1_info">
                                                 <thead>
                                                     <tr role="row">
-                                                        <th></th>
-                                                        <th  style="width: 50px;">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 50px;">
                                                             序号
                                                         </th>
-                                                        <th  style="width: 100px;">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
                                                             始发
                                                         </th>
-                                                        <th  style="width: 100px;">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
                                                             到达
                                                         </th>
-                                                        <th  style="width: 100px;">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
                                                             始发国家
                                                         </th>
-                                                        <th  style="width: 100px;">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
                                                             到达国家
                                                         </th>
-                                                        <th style="width: 100px;">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
                                                             Rule
                                                         </th>
-                                                        <th  style="width: 100px;">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
                                                             文件编号
                                                         </th>
-                                                        <th style="width: 100px;">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
                                                             Fare Class
                                                         </th>
-                                                        <th  style="width: 100px;">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
                                                             OW/RT
                                                         </th>
-                                                        <th  style="width: 100px;">
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Full Name : activate to sort column ascending" style="width: 100px;">
                                                             Routing
                                                         </th>
-                                                        <th  style="width: 90px;">
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Points : activate to sort column ascending" style="width: 90px;">
                                                             Footnote
                                                         </th>
-                                                        <th  style="width: 95px;">
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Notes : activate to sort column ascending" style="width: 95px;">
                                                             货币
                                                         </th>
-                                                        <th  style="width: 95px;">
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Notes : activate to sort column ascending" style="width: 95px;">
                                                             价格
                                                         </th>
-                                                        <th  style="width: 95px;">
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Notes : activate to sort column ascending" style="width: 95px;">
                                                             生效日期
                                                         </th>
-                                                        <th style="width: 95px;">
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Notes : activate to sort column ascending" style="width: 95px;">
+                                                            失效日期
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Edit : activate to sort column ascending" style="width: 65px;">
+                                                            编辑
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Delete : activate to sort column ascending" style="width: 92px;">
+                                                            删除
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Edit : activate to sort column ascending" style="width: 65px;">
+                                                            复制
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="_tbody">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="portlet light tab-pane fade" id="tab_2_2">
+                                        <div class="portlet-title">
+                                            <div class="caption font-dark">
+                                                <i class="icon-settings font-dark"></i>
+                                                <span class="caption-subject bold uppercase"> 修改结果 </span>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-toolbar">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="btn-group">
+                                                            <button id="shenpi" class="btn red"> 提交审批
+                                                                <i class="fa fa-upload"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="btn-group pull-right">
+                                                            <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">工具
+                                                            <i class="fa fa-angle-down"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu pull-right">
+                                                                <li>
+                                                                    <a href="javascript:;">
+                                                                        <i class="fa fa-print"></i> 打印
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript:;">
+                                                                        <i class="fa fa-file-pdf-o"></i> 导出PDF
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript:;">
+                                                                        <i class="fa fa-file-excel-o"></i> 导出Excel
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <table class="table table-striped table-hover table-bordered dataTable no-footer" id="sample_editable_2" role="grid">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 50px;">
+                                                            序号
+                                                        </th>
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
+                                                            始发
+                                                        </th>
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
+                                                            到达
+                                                        </th>
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
+                                                            始发国家
+                                                        </th>
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
+                                                            到达国家
+                                                        </th>
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
+                                                            Rule
+                                                        </th>
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
+                                                            文件编号
+                                                        </th>
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
+                                                            Fare Class
+                                                        </th>
+                                                        <th class="sorting_asc" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" Username : activate to sort column descending" style="width: 100px;">
+                                                            OW/RT
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Full Name : activate to sort column ascending" style="width: 100px;">
+                                                            Routing
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Points : activate to sort column ascending" style="width: 90px;">
+                                                            Footnote
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Notes : activate to sort column ascending" style="width: 95px;">
+                                                            货币
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Notes : activate to sort column ascending" style="width: 95px;">
+                                                            价格
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Notes : activate to sort column ascending" style="width: 95px;">
+                                                            生效日期
+                                                        </th>
+                                                        <th class="sorting" tabindex="0" aria-controls="sample_editable_1" rowspan="1" colspan="1" aria-label=" Notes : activate to sort column ascending" style="width: 95px;">
                                                             失效日期
                                                         </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="new_table"></tbody>
+                                                <tbody>
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1"> 1
+                                                        </td>
+                                                        <td>{{d.}}</td>
+                                                        <td> Alex Nilson </td>
+                                                        <td>{{d.}}</td>
+                                                        <td>{{d.}}</td>
+                                                        <td>{{d.}}</td>
+                                                        <td>{{d.}}</td>
+                                                        <td>{{d.}}</td>
+                                                        <td>{{d.}}</td>
+                                                        <td>{{d.}}</td>
+                                                        <td>{{d.}}</td>
+                                                        <td>{{d.}}</td>
+                                                        <td>{{d.}}</td>
+                                                        <td>{{d.}}</td>
+                                                        <td> power user </td>
+                                                    </tr>
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -567,75 +568,33 @@
     <script src="./assets/global/plugins/ie8.fix.min.js"></script>
     <![endif]-->
     <script id="odata" type="text/html">
-        {{each data as vv index}}
-        {{if vv.del}}
-        <tr>
+        <tr role="row" class="odd">
+            <td class="sorting_1">
+                {{d.id}}
+            </td>
+            <td>{{d.s_addr}}</td>
+            <td>{{d.d_addr}}</td>
+            <td>{{d.s_con}}</td>
+            <td>{{d.d_con}}</td>
+            <td>{{d.hs}}</td>
+            <td>{{d.tariff}}</td>
+            <td>{{d.fare}}</td>
+            <td>{{d.ow_rt}}</td>
+            <td>{{d.routing}}</td>
+            <td>{{d.fn}}</td>
+            <td>{{d.coun}}</td>
+            <td>{{d.price}}</td>
+            <td>{{d.s_time}}</td>
+            <td>{{d.e_time}}</td>
             <td>
-                <span class="color-red">删除</span>
+                <a class="edit" href="javascript:;"> 编辑 </a>
             </td>
-            <td class="sorting_1">
-                <del>{{vv.id}}</del>
-            </td>
-            <td><del>{{vv.s_addr}}</del></td>
-            <td><del>{{vv.d_addr}}</del></td>
-            <td><del>{{vv.s_con}}</del></td>
-            <td><del>{{vv.d_con}}</del></td>
-            <td><del>{{vv.hs}}</del></td>
-            <td><del>{{vv.tariff}}</del></td>
-            <td><del>{{vv.fare}}</del></td>
-            <td><del>{{vv.ow_rt}}</del></td>
-            <td><del>{{vv.routing}}</del></td>
-            <td><del>{{vv.fn}}</del></td>
-            <td><del>{{vv.coun}}</del></td>
-            <td><del>{{vv.price}}</del></td>
-            <td><del>{{vv.s_time}}</del></td>
-            <td><del>{{vv.e_time}}</del></td>
-        </tr>
-        {{else}}
-        <tr>
             <td>
-                <label class="mt-checkbox"><input type="checkbox" data-id="{{vv.id}}" data-index="{{index}}" class="ck_item" /><span></span></label>
+                <a class="delete" href="javascript:;"> 删除 </a>
             </td>
-            <td class="sorting_1">
-                {{vv.id}}
+            <td>
+                <a class="copy" href="javascript:;"> 复制 </a>
             </td>
-            <td>{{vv.s_addr}}</td>
-            <td>{{vv.d_addr}}</td>
-            <td>{{vv.s_con}}</td>
-            <td>{{vv.d_con}}</td>
-            <td>{{vv.hs}}</td>
-            <td>{{vv.tariff}}</td>
-            <td>{{vv.fare}}</td>
-            <td>{{vv.ow_rt}}</td>
-            <td>{{vv.routing}}</td>
-            <td>{{vv.fn}}</td>
-            <td>{{vv.coun}}</td>
-            <td>{{vv.price}}</td>
-            <td>{{vv.s_time}}</td>
-            <td>{{vv.e_time}}</td>
-        </tr>
-        {{/if}}
-        {{/each}}
-    </script>
-    <script id="tmp-row" type="text/html">
-        <tr id="new_row">
-            <td></td>
-            <td class="sorting_1">
-            </td>
-            <td><input value="{{s_addr}}" type="text" class="form-control s_addr" /></td>
-            <td><input value="{{d_addr}}" type="text" class="form-control d_addr" /></td>
-            <td><input value="{{s_con}}" type="text" class="form-control s_con" /></td>
-            <td><input value="{{d_con}}" type="text" class="form-control d_con" /></td>
-            <td><input value="{{hs}}" type="text" class="form-control hs" /></td>
-            <td><input value="{{tariff}}" type="text" class="form-control tariff" /></td>
-            <td><input value="{{fare}}" type="text" class="form-control fare" /></td>
-            <td><input value="{{ow_rt}}" type="text" class="form-control ow_rt" /></td>
-            <td><input value="{{routing}}" type="text" class="form-control routing" /></td>
-            <td><input value="{{fn}}" type="text" class="form-control fn" /></td>
-            <td><input value="{{coun}}" type="text" class="form-control coun" /></td>
-            <td><input value="{{price}}" type="text" class="form-control price" /></td>
-            <td><input value="{{s_time}}" type="text" class="form-control s_time" /></td>
-            <td><input value="{{e_time}}" type="text" class="form-control e_time" /></td>
         </tr>
     </script>
     <script id="edata" type="text/html">
@@ -675,15 +634,15 @@
     <script src="./assets/global/scripts/app.min.js" type="text/javascript"></script>
     <!-- END THEME GLOBAL SCRIPTS -->
     <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="./assets/global/plugins/datatables/table-datatables-managed.min.js" type="text/javascript"></script>
     <script src="./assets/layouts/layout2/scripts/layout.min.js" type="text/javascript"></script>
     <script src="./assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
     <!-- END THEME LAYOUT SCRIPTS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="./assets/global/plugins/bootstrap-paginator.min.js"></script>
+    <script src="./assets/pages/scripts/table-datatables-editable.js" type="text/javascript"></script>
+    <script src="./assets/global/scripts/laytpl.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
-    <script src="assets/pages/scripts/index_interface.js"></script>
-    <script src="assets/global/plugins/template.js"></script>
-    <script src="assets/pages/scripts/freight.js"></script>
+    <script src="assets/pages/scripts/index.js"></script>
 </body>
 
 </html>
