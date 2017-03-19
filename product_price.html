@@ -33,15 +33,17 @@
     <link rel="shortcut icon" href="favicon.ico" />
     <link href="./assets/pages/css/index.css" rel="stylesheet" />
     <style>
-        #product_list th, #product_list td {
+        #product_list th,
+        #product_list td {
             text-align: center;
         }
-
+        
         #table_template .form-body {
             padding: 0 20px;
         }
+        
         .color-red {
-            color:#bb0000;
+            color: #bb0000;
         }
     </style>
 </head>
@@ -169,7 +171,7 @@
                             <li class="nav-item  ">
                                 <a href="todo.html" class="nav-link ">
                                     <span class="title">
-                                        审批查询
+                                        待办任务
                                     </span>
                                 </a>
                             </li>
@@ -319,7 +321,9 @@
                                         </thead>
                                         <tbody id="tables">
                                             <tr>
-                                                <td colspan="12"><div>暂无记录</div></td>
+                                                <td colspan="12">
+                                                    <div>暂无记录</div>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -352,8 +356,7 @@
             </div>
         </div>
         <script id="tmp-list" type="text/html">
-            {{each data as vv index}}
-            {{if vv.del==1}}
+            {{each data as vv index}} {{if vv.del==1}}
             <tr>
                 <td>
                     <label class="mt-checkbox"><input type="checkbox" data-id="{{index}}" class="ck_item" /><span></span></label>
@@ -387,8 +390,7 @@
                 <td> {{vv.price}} </td>
                 <td> {{vv.ei}} </td>
             </tr>
-            {{/if}}
-            {{/each}}
+            {{/if}} {{/each}}
         </script>
         <script id="tmp-add" type="text/html">
             <div id="table_template" class="row">

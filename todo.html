@@ -156,7 +156,7 @@
                             <li class="nav-item  ">
                                 <a href="todo.html" class="nav-link ">
                                     <span class="title">
-                                        审批查询
+                                        待办任务
                                     </span>
                                 </a>
                             </li>
@@ -265,7 +265,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="col-md-1"> <label class="mt-checkbox"><input type="checkbox" data-id="{{vv.id}}" class="ck_all" /><span></span></label> </th>
-                                                <th class="col-md-1">  序号 </th>
+                                                <th class="col-md-1"> 序号 </th>
                                                 <th> 产品编号 </th>
                                                 <th> 产品名称 </th>
                                                 <th> 产品类型 </th>
@@ -278,7 +278,7 @@
                                             </tr>
                                         </thead>
                                         <tbody id="list">
-                                         
+
                                         </tbody>
                                     </table>
                                     <div class="row">
@@ -312,9 +312,9 @@
             {{each data as vv}}
             <tr>
                 <td class="col-md-1"> <label class="mt-checkbox"><input type="checkbox" data-id="{{vv.id}}" class="ck_item" /><span></span></label> </td>
-                <td class="col-md-1">  {{vv.id}} </td>
+                <td class="col-md-1"> {{vv.id}} </td>
                 <td> {{vv.code}} </td>
-                <td> <a href="product_detail.html?id={{vv.id}}">{{vv.name}}</a> </td>
+                <td> <a href="task_detail.html?id={{vv.id}}">{{vv.name}}</a> </td>
                 <td> {{vv.type }} </td>
                 <td> {{vv.part1}} </td>
                 <td> {{vv.start}} </td>
