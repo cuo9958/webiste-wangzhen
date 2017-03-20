@@ -156,7 +156,11 @@ var interfaces = {
     //获取运价
     getPrice: function (id, fn) {
         var result = [];
-        fn(prices);
+        if (id > 20) {
+            fn([]);
+        } else {
+            fn(prices);
+        }
     },
     //添加运价
     addPrice: function (d, fn) {

@@ -187,7 +187,11 @@ $(function () {
             if (res) {
                 toastr.info("保存成功");
                 setTimeout(function () {
-                    window.location.href = "product_price.html?id="+res.id;
+                    if (params.id) {
+                        window.location.href = "product_price.html?id=" + params.id;
+                    } else {
+                        window.location.href = "product_price.html?id=100";
+                    }
                 }, 500);
             }
         });
